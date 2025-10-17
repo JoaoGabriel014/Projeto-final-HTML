@@ -28,15 +28,34 @@
 
     <div id="add-cliente" class="offcanvas offcanvas-start">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title">
-                Novo Cliente
-            </h5>
+            <h5 class="offcanvas-title">Novo Cliente</h5>
         </div>
+    
         <div class="offcanvas-body">
-            O formulario vai aqui
+            <form action="">
+    
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Digite aqui" class="form-control mb-3">
+    
+                <label for="foto">Foto</label>
+                <input type="file" id="foto" class="form-control mb-3">
+    
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" placeholder="(00) 00000-0000" class="form-control mb-3">
+    
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" placeholder="Rua, número, bairro..." class="form-control mb-3">
+    
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" placeholder="000.000.000-00" class="form-control mb-3">
+    
+                <button class="btn btn-dark w-100">PRONTO</button>
+    
+            </form>
         </div>
     </div>
     
+
     <hr>
     <section class="card card-boby">
         <div class="container">
