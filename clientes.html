@@ -19,13 +19,29 @@
             <a href="index.html" class="btn btn-outline-light">Sair</a>
         </div>
     </nav>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mt-3">Clientes</h2>
+        <div>
+            <a href="#add-cliente" data-bs-toggle="offcanvas" class="btn btn-dark">Novo Cliente</a>
+        </div>
+    </div>
 
-    <h2 class="mt-3">clientes</h2>
+    <div id="add-cliente" class="offcanvas offcanvas-start">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">
+                Novo Cliente
+            </h5>
+        </div>
+        <div class="offcanvas-body">
+            O formulario vai aqui
+        </div>
+    </div>
+    
     <hr>
     <section class="card card-boby">
         <div class="container">
         <table class="table table-striped table-bordered">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>#ID</th>
                     <th>CPF</th>
@@ -40,7 +56,7 @@
                 <tr>
                     <td>1</td>
                     <td>123.456.789-00</td>
-                    <td><img src="https://randomuser.me/api/portraits/men/10.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/10.jpg" width="50"></td>
                     <td>Lucas Almeida</td>
                     <td>(11) 98888-1234</td>
                     <td>Rua das Flores, 45 - São Paulo/SP</td>
@@ -52,7 +68,7 @@
                 <tr>
                     <td>2</td>
                     <td>987.654.321-11</td>
-                    <td><img src="https://randomuser.me/api/portraits/women/20.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/20.jpg" width="50"></td>
                     <td>Ana Souza</td>
                     <td>(21) 97777-4321</td>
                     <td>Av. Atlântica, 900 - Rio de Janeiro/RJ</td>
@@ -64,7 +80,7 @@
                 <tr>
                     <td>3</td>
                     <td>321.654.987-22</td>
-                    <td><img src="https://randomuser.me/api/portraits/men/33.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/33.jpg" width="50"></td>
                     <td>Marcos Silva</td>
                     <td>(31) 99876-5555</td>
                     <td>Rua Minas Gerais, 120 - Belo Horizonte/MG</td>
@@ -76,7 +92,7 @@
                 <tr>
                     <td>4</td>
                     <td>654.987.321-33</td>
-                    <td><img src="https://randomuser.me/api/portraits/women/44.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/44.jpg" width="50"></td>
                     <td>Fernanda Lima</td>
                     <td>(41) 98822-9090</td>
                     <td>Rua XV de Novembro, 300 - Curitiba/PR</td>
@@ -88,7 +104,7 @@
                 <tr>
                     <td>5</td>
                     <td>852.963.741-44</td>
-                    <td><img src="https://randomuser.me/api/portraits/men/50.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/50.jpg" width="50"></td>
                     <td>Rafael Costa</td>
                     <td>(71) 97711-2233</td>
                     <td>Rua Bahia, 77 - Salvador/BA</td>
@@ -100,7 +116,7 @@
                 <tr>
                     <td>6</td>
                     <td>951.753.852-55</td>
-                    <td><img src="https://randomuser.me/api/portraits/women/65.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/65.jpg" width="50"></td>
                     <td>Camila Ferreira</td>
                     <td>(51) 98899-3344</td>
                     <td>Rua dos Andradas, 999 - Porto Alegre/RS</td>
@@ -112,7 +128,7 @@
                 <tr>
                     <td>7</td>
                     <td>147.258.369-66</td>
-                    <td><img src="https://randomuser.me/api/portraits/men/70.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/70.jpg" width="50"></td>
                     <td>Diego Moreira</td>
                     <td>(85) 98877-4455</td>
                     <td>Av. Beira Mar, 2300 - Fortaleza/CE</td>
@@ -124,7 +140,7 @@
                 <tr>
                     <td>8</td>
                     <td>369.258.147-77</td>
-                    <td><img src="https://randomuser.me/api/portraits/women/80.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/80.jpg" width="50"></td>
                     <td>Juliana Pereira</td>
                     <td>(62) 98700-1122</td>
                     <td>Rua Goiás, 111 - Goiânia/GO</td>
@@ -136,7 +152,7 @@
                 <tr>
                     <td>9</td>
                     <td>258.369.147-88</td>
-                    <td><img src="https://randomuser.me/api/portraits/men/85.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/85.jpg" width="50"></td>
                     <td>Henrique Torres</td>
                     <td>(92) 98988-7788</td>
                     <td>Rua Amazonas, 22 - Manaus/AM</td>
@@ -148,7 +164,7 @@
                 <tr>
                     <td>10</td>
                     <td>741.852.963-99</td>
-                    <td><img src="https://randomuser.me/api/portraits/women/95.jpg" width="50"></td>
+                    <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/95.jpg" width="50"></td>
                     <td>Patrícia Gomes</td>
                     <td>(19) 99100-5566</td>
                     <td>Av. Paulista, 1500 - Campinas/SP</td>
