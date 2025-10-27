@@ -1,333 +1,444 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Clientes - Locadora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #ffffff;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    nav {
+      flex-wrap: wrap;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    img.rounded-circle {
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      nav .btn {
+        margin-top: 5px;
+        width: 100%;
+      }
+
+      .offcanvas {
+        width: 100% !important;
+      }
+
+      body {
+        padding: 10px;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #ececec;
+        color: #000000;
+      }
+
+      .card,
+      .offcanvas,
+      table {
+        background-color: #dddddd;
+        color: #000000;
+      }
+
+      .table-dark th {
+        background-color: #1b1b1b !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <nav class="row bg-dark p-3 text-white">
-        <h1 class="mt-5">
-            <img src="img/logo-car.png" alt="Loca Cars" class="img-fluid" style="max-width: 300px;">
-        </h1>        
-        <div class="col text-end">
-            <a href="dashboard.html" class="btn btn-outline-light">Dashboard</a>
-            <a href="veiculos.html" class="btn btn-outline-light">Veiculos</a>
-            <a href="clientes.html" class="btn btn-outline-light">Cliente</a>
-            <a href="index.html" class="btn btn-outline-light">Sair</a>
-        </div>
-    </nav>
-    <div class="d-flex justify-content-between align-items-center">
-        <h2 class="mt-3">Clientes</h2>
-        <div>
-            <a href="#add-cliente" data-bs-toggle="offcanvas" class="btn btn-dark" id="novoClienteBtn">Novo Cliente</a>
-        </div>
+  <!-- NAVBAR -->
+  <nav class="row bg-dark p-3 text-white align-items-center">
+    <div class="col-12 col-md">Locadora de veículos</div>
+    <div class="col-12 col-md text-md-end text-center mt-2 mt-md-0">
+      <a href="dashboard.html" class="btn btn-outline-light m-1">Dashboard</a>
+      <a href="veiculos.html" class="btn btn-outline-light m-1">Veículos</a>
+      <a href="clientes.html" class="btn btn-outline-light m-1">Clientes</a>
+      <a href="index.html" class="btn btn-outline-light m-1">Sair</a>
     </div>
+  </nav>
 
-    <div id="add-cliente" class="offcanvas offcanvas-start">
-        <div class="offcanvas-header">
-            <h5 id="tituloForm" class="offcanvas-title">Novo Cliente</h5>
-        </div>
-    
-        <div class="offcanvas-body">
-            <form id="clienteForm">
-                <label for="nome">Nome</label>
-                <input type="text" id="nome" placeholder="Digite aqui" class="form-control mb-3">
-    
-                <label for="foto">Foto</label>
-                <input type="file" id="foto" class="form-control mb-3">
-    
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" placeholder="(00) 00000-0000" class="form-control mb-3">
-    
-                <label for="endereco">Endereço</label>
-                <input type="text" id="endereco" placeholder="Rua, número, bairro..." class="form-control mb-3">
-    
-                <label for="cpf">CPF</label>
-                <input type="text" id="cpf" placeholder="000.000.000-00" class="form-control mb-3">
-    
-                <button class="btn btn-dark w-100">PRONTO</button>
-            </form>
-        </div>
+  <div class="container my-3">
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+      <h2 class="mt-3">Clientes</h2>
+      <div>
+        <a href="#add-cliente" data-bs-toggle="offcanvas" class="btn btn-dark rounded-pill" id="novoClienteBtn">Novo Cliente</a>
+      </div>
     </div>
+  </div>
 
-    <hr>
-    <section class="card card-boby">
-        <div class="container">
-            <table class="table table-striped table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#ID</th>
-                        <th>CPF</th>
-                        <th>Foto</th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Endereço</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="clientesList">
-                    <!-- Linhas dos clientes serão inseridas aqui -->
-                    <tr>
-                        <td>1</td>
-                        <td>123.456.789-00</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/10.jpg" width="50"></td>
-                        <td>Lucas Almeida</td>
-                        <td>(11) 98888-1234</td>
-                        <td>Rua das Flores, 45 - São Paulo/SP</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>987.654.321-11</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/20.jpg" width="50"></td>
-                        <td>Ana Souza</td>
-                        <td>(21) 97777-4321</td>
-                        <td>Av. Atlântica, 900 - Rio de Janeiro/RJ</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>321.654.987-22</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/33.jpg" width="50"></td>
-                        <td>Marcos Silva</td>
-                        <td>(31) 99876-5555</td>
-                        <td>Rua Minas Gerais, 120 - Belo Horizonte/MG</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>654.987.321-33</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/44.jpg" width="50"></td>
-                        <td>Fernanda Lima</td>
-                        <td>(41) 98822-9090</td>
-                        <td>Rua XV de Novembro, 300 - Curitiba/PR</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>852.963.741-44</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/50.jpg" width="50"></td>
-                        <td>Rafael Costa</td>
-                        <td>(71) 97711-2233</td>
-                        <td>Rua Bahia, 77 - Salvador/BA</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>951.753.852-55</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/65.jpg" width="50"></td>
-                        <td>Camila Ferreira</td>
-                        <td>(51) 98899-3344</td>
-                        <td>Rua dos Andradas, 999 - Porto Alegre/RS</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>147.258.369-66</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/70.jpg" width="50"></td>
-                        <td>Diego Moreira</td>
-                        <td>(85) 98877-4455</td>
-                        <td>Av. Beira Mar, 2300 - Fortaleza/CE</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>369.258.147-77</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/80.jpg" width="50"></td>
-                        <td>Juliana Pereira</td>
-                        <td>(62) 98866-7788</td>
-                        <td>Rua Goiás, 145 - Goiânia/GO</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>753.159.486-88</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/90.jpg" width="50"></td>
-                        <td>José Oliveira</td>
-                        <td>(41) 98855-6677</td>
-                        <td>Rua Paraná, 33 - Curitiba/PR</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>951.741.258-99</td>
-                        <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/95.jpg" width="50"></td>
-                        <td>Patricia Costa</td>
-                        <td>(61) 99844-5566</td>
-                        <td>Av. W3, 678 - Brasília/DF</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+  <!-- CAMPO DE BUSCA -->
+  <div class="container mb-3">
+    <input type="text" id="buscaCliente" class="form-control"
+      placeholder="🔍 Buscar cliente por nome, CPF, telefone ou endereço...">
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script>
-        const form = document.getElementById("clienteForm");
-        const clientesList = document.getElementById("clientesList");
-        const MAX_CLIENTES = 20;
-        let clientId = 11; // Continuar a partir do 11, pois já temos 10 clientes
-        let editMode = false;
-        let editRow = null;
+  <!-- OFFCANVAS FORM -->
+  <div id="add-cliente" class="offcanvas offcanvas-start">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="tituloForm">Novo Cliente</h5>
+    </div>
+    <div class="offcanvas-body">
+      <form id="clienteForm">
+        <input type="hidden" id="editIndex">
 
-        // Botão "Novo Cliente" limpa o formulário
-        document.getElementById("novoClienteBtn").addEventListener("click", () => {
-            form.reset();
-            editMode = false;
-            editRow = null;
-            document.getElementById("tituloForm").textContent = "Novo Cliente";
-        });
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Digite aqui" class="form-control mb-3" required>
 
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const nome = document.getElementById("nome").value.trim();
-            const telefone = document.getElementById("telefone").value.trim();
-            const endereco = document.getElementById("endereco").value.trim();
-            const cpf = document.getElementById("cpf").value.trim();
-            const fotoInput = document.getElementById("foto");
-            const foto = fotoInput.files[0] ? URL.createObjectURL(fotoInput.files[0]) : "https://via.placeholder.com/50";
+        <label for="foto">Foto</label>
+        <input type="file" id="foto" class="form-control mb-3">
 
-            // Validação de tamanho
-            if (cpf.length < 11 || telefone.length < 8) {
-                alert("⚠️ CPF ou telefone muito curto!");
-                return;
-            }
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" placeholder="(00) 00000-0000" maxlength="15" class="form-control mb-3" required>
 
-            // Validação de duplicados (somente se não for edição)
-            if (!editMode) {
-                if (clientesList.rows.length >= MAX_CLIENTES) {
-                    alert("⚠️ Limite máximo de " + MAX_CLIENTES + " clientes atingido!");
-                    return;
-                }
-                for (let row of clientesList.rows) {
-                    const cpfExistente = row.cells[1].textContent;
-                    const telExistente = row.cells[4].textContent;
-                    if (cpfExistente === cpf) {
-                        alert("❌ Este CPF já está cadastrado!");
-                        return;
-                    }
-                    if (telExistente === telefone) {
-                        alert("❌ Este telefone já está cadastrado!");
-                        return;
-                    }
-                }
-            }
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" placeholder="Rua, número, bairro..." class="form-control mb-3" required>
 
-            if (editMode && editRow) {
-                // Atualiza os dados existentes
-                editRow.cells[1].textContent = cpf;
-                if (fotoInput.files[0]) {
-                    editRow.cells[2].innerHTML = `<img class="rounded-circle" src="${foto}" width="50">`;
-                }
-                editRow.cells[3].textContent = nome;
-                editRow.cells[4].textContent = telefone;
-                editRow.cells[5].textContent = endereco;
-                alert("✅ Cliente atualizado com sucesso!");
-            } else {
-                const novaLinha = document.createElement("tr");
-                novaLinha.innerHTML = `
-                    <td>${clientId++}</td>
-                    <td>${cpf}</td>
-                    <td><img class="rounded-circle" src="${foto}" width="50"></td>
-                    <td>${nome}</td>
-                    <td>${telefone}</td>
-                    <td>${endereco}</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                        <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-                    </td>
-                `;
-                clientesList.appendChild(novaLinha);
-            }
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" class="form-control mb-3" required>
 
-            form.reset();
-            const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById("add-cliente"));
-            offcanvas.hide();
-            editMode = false;
-            editRow = null;
-        });
+        <button type="submit" class="btn btn-dark rounded-pill w-100">Salvar</button>
+      </form>
+    </div>
+  </div>
 
-        function excluirCliente(botao) {
-            if (confirm("Tem certeza que deseja excluir este cliente?")) {
-                botao.closest("tr").remove();
-            }
+  <hr>
+
+  <!-- BOTÃO PARA OCULTAR/MOSTRAR TABELA -->
+  <div class="container mb-3 text-center">
+    <button id="toggleTabelaBtn" class="btn btn-secondary rounded-pill">Ocultar tabela</button>
+  </div>
+
+  <!-- TABELA -->
+  <section id="tabelaClientes" class="card card-body">
+    <div class="container table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>#ID</th>
+            <th>CPF</th>
+            <th>Foto</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="clientesList">
+          <tr>
+            <td>1</td>
+            <td>123.456.789-00</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/10.jpg" width="50"></td>
+            <td>Lucas Almeida</td>
+            <td>(11) 98888-1234</td>
+            <td>Rua das Flores, 45 - São Paulo/SP</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill  rounded-pill rounded-pillrounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill  rounded-pill rounded-pillrounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>987.654.321-11</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/20.jpg" width="50"></td>
+            <td>Ana Souza</td>
+            <td>(21) 97777-4321</td>
+            <td>Av. Atlântica, 900 - Rio de Janeiro/RJ</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill  rounded-pill rounded-pillrounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill  rounded-pill rounded-pillrounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>321.654.987-22</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/33.jpg" width="50"></td>
+            <td>Marcos Silva</td>
+            <td>(31) 99876-5555</td>
+            <td>Rua Minas Gerais, 120 - Belo Horizonte/MG</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>654.987.321-33</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/44.jpg" width="50"></td>
+            <td>Fernanda Lima</td>
+            <td>(41) 98822-9090</td>
+            <td>Rua XV de Novembro, 300 - Curitiba/PR</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>852.963.741-44</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/50.jpg" width="50"></td>
+            <td>Rafael Costa</td>
+            <td>(71) 97711-2233</td>
+            <td>Rua Bahia, 77 - Salvador/BA</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary  rounded-pill rounded-pillrounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger  rounded-pill rounded-pillrounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>951.753.852-55</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/65.jpg" width="50"></td>
+            <td>Camila Ferreira</td>
+            <td>(51) 98899-3344</td>
+            <td>Rua dos Andradas, 999 - Porto Alegre/RS</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary  rounded-pill rounded-pillrounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger  rounded-pill rounded-pillrounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>147.258.369-66</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/70.jpg" width="50"></td>
+            <td>Diego Moreira</td>
+            <td>(85) 98877-4455</td>
+            <td>Av. Beira Mar, 2300 - Fortaleza/CE</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill rounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill rounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>369.258.147-77</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/80.jpg" width="50"></td>
+            <td>Juliana Pereira</td>
+            <td>(62) 98866-7788</td>
+            <td>Rua Goiás, 145 - Goiânia/GO</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill rounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill rounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>753.159.486-88</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/men/90.jpg" width="50"></td>
+            <td>José Oliveira</td>
+            <td>(41) 98855-6677</td>
+            <td>Rua Paraná, 33 - Curitiba/PR</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>951.741.258-99</td>
+            <td><img class="rounded-circle" src="https://randomuser.me/api/portraits/women/95.jpg" width="50"></td>
+            <td>Patricia Costa</td>
+            <td>(61) 99844-5566</td>
+            <td>Av. W3, 678 - Brasília/DF</td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary rounded-pill" onclick="editarCliente(this)">Editar</button>
+              <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="excluirCliente(this)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const form = document.getElementById("clienteForm");
+    const clientesList = document.getElementById("clientesList");
+    const buscaInput = document.getElementById("buscaCliente");
+    const MAX_CLIENTES = 10;
+    let clientId = clientesList.rows.length + 1;
+    let editMode = false;
+    let editRow = null;
+
+    const toggleBtn = document.getElementById("toggleTabelaBtn");
+    const tabela = document.getElementById("tabelaClientes");
+
+    toggleBtn.addEventListener("click", () => {
+      if (tabela.style.display === "none") {
+        tabela.style.display = "";
+        toggleBtn.textContent = "Ocultar tabela";
+      } else {
+        tabela.style.display = "none";
+        toggleBtn.textContent = "Mostrar tabela";
+      }
+    });
+
+    buscaInput.addEventListener("input", function () {
+      const termo = this.value.toLowerCase();
+      const linhas = clientesList.getElementsByTagName("tr");
+      for (let linha of linhas) {
+        linha.style.display = linha.textContent.toLowerCase().includes(termo) ? "" : "none";
+      }
+    });
+
+    const nomeInput = document.getElementById("nome");
+    nomeInput.addEventListener("input", function (e) {
+      const value = e.target.value;
+      if (/\d/.test(value)) {
+        e.target.value = value.replace(/\d/g, "");
+        if (e.inputType !== "deleteContentBackward") alert("⚠️ O campo 'Nome' não pode conter números!");
+      }
+    });
+
+    const cpfInput = document.getElementById("cpf");
+    cpfInput.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, "");
+      if (e.data && /[A-Za-z]/.test(e.data)) alert("⚠️ O campo 'CPF' deve conter apenas números!");
+      if (value.length > 11) value = value.slice(0, 11);
+      if (value.length > 9) value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, "$1.$2.$3-$4");
+      else if (value.length > 6) value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, "$1.$2.$3");
+      else if (value.length > 3) value = value.replace(/(\d{3})(\d{0,3})/, "$1.$2");
+      e.target.value = value;
+    });
+
+    const telInput = document.getElementById("telefone");
+    telInput.addEventListener("input", function (e) {
+      let value = e.target.value.replace(/\D/g, "");
+      if (e.data && /[A-Za-z]/.test(e.data)) alert("⚠️ O campo 'Telefone' deve conter apenas números!");
+      if (value.length > 11) value = value.slice(0, 11);
+      if (value.length > 6) value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+      else if (value.length > 2) value = value.replace(/(\d{2})(\d{0,5})/, "($1) $2");
+      else value = value.replace(/(\d{0,2})/, "($1");
+      e.target.value = value;
+    });
+
+    document.getElementById("novoClienteBtn").addEventListener("click", () => {
+      form.reset();
+      editMode = false;
+      editRow = null;
+      document.getElementById("tituloForm").textContent = "Novo Cliente";
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value.trim();
+      const telefone = document.getElementById("telefone").value.trim();
+      const endereco = document.getElementById("endereco").value.trim();
+      const cpf = document.getElementById("cpf").value.trim();
+      const fotoInput = document.getElementById("foto");
+      const foto = fotoInput.files[0] ? URL.createObjectURL(fotoInput.files[0]) : "https://via.placeholder.com/50";
+
+      if (nome === "" || /\d/.test(nome)) {
+        alert("⚠️ O nome não pode conter números nem estar vazio!");
+        return;
+      }
+
+      if (!/^\(\d{2}\) \d{5}-\d{4}$/.test(telefone)) {
+        alert("⚠️ Telefone inválido! Use o formato (00) 00000-0000.");
+        return;
+      }
+
+      if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
+        alert("⚠️ CPF inválido! Use o formato 000.000.000-00.");
+        return;
+      }
+
+      if (!editMode) {
+        if (clientesList.rows.length >= MAX_CLIENTES) {
+          alert("⚠️ Limite máximo de " + MAX_CLIENTES + " clientes atingido!");
+          return;
         }
 
-        function editarCliente(botao) {
-            const row = botao.closest("tr");
-            editMode = true;
-            editRow = row;
-
-            // Preenche o formulário com os dados atuais
-            document.getElementById("cpf").value = row.cells[1].textContent;
-            document.getElementById("nome").value = row.cells[3].textContent;
-            document.getElementById("telefone").value = row.cells[4].textContent;
-            document.getElementById("endereco").value = row.cells[5].textContent;
-            document.getElementById("tituloForm").textContent = "Editar Cliente";
-
-            const offcanvas = new bootstrap.Offcanvas(document.getElementById("add-cliente"));
-            offcanvas.show();
+        for (let row of clientesList.rows) {
+          const cpfExistente = row.cells[1].textContent;
+          const telExistente = row.cells[4].textContent;
+          if (cpfExistente === cpf) {
+            alert("❌ Este CPF já está cadastrado!");
+            return;
+          }
+          if (telExistente === telefone) {
+            alert("❌ Este telefone já está cadastrado!");
+            return;
+          }
         }
-    </script>
-    <script>
-        // Máscara para CPF
-        const cpfInput = document.getElementById("cpf");
-        cpfInput.addEventListener("input", () => {
-            let value = cpfInput.value.replace(/\D/g, ""); // Remove tudo o que não for número
-            if (value.length > 11) value = value.slice(0, 11); // Limita a 11 números
-            value = value.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o primeiro ponto
-            value = value.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o segundo ponto
-            value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
-            cpfInput.value = value;
-        });
-    
-        // Máscara para Telefone
-        const telefoneInput = document.getElementById("telefone");
-        telefoneInput.addEventListener("input", () => {
-            let value = telefoneInput.value.replace(/\D/g, ""); // Remove tudo o que não for número
-            if (value.length > 11) value = value.slice(0, 11); // Limita a 11 números
-            if (value.length <= 10) {
-                value = value.replace(/(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3"); // Máscara para números com 10 dígitos
-            } else {
-                value = value.replace(/(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"); // Máscara para números com 11 dígitos
-            }
-            telefoneInput.value = value;
-        });
-    </script>
-    
+
+        const novaLinha = document.createElement("tr");
+        novaLinha.innerHTML = `
+          <td>${clientId++}</td>
+          <td>${cpf}</td>
+          <td><img class="rounded-circle" src="${foto}" width="50"></td>
+          <td>${nome}</td>
+          <td>${telefone}</td>
+          <td>${endereco}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
+            <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
+          </td>`;
+        clientesList.appendChild(novaLinha);
+      } else if (editRow) {
+        editRow.cells[1].textContent = cpf;
+        if (fotoInput.files[0]) editRow.cells[2].innerHTML = `<img class="rounded-circle" src="${foto}" width="50">`;
+        editRow.cells[3].textContent = nome;
+        editRow.cells[4].textContent = telefone;
+        editRow.cells[5].textContent = endereco;
+        alert("✅ Cliente atualizado com sucesso!");
+      }
+
+      form.reset();
+      const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById("add-cliente"));
+      offcanvas.hide();
+      editMode = false;
+      editRow = null;
+    });
+
+    function excluirCliente(botao) {
+      if (confirm("Tem certeza que deseja excluir este cliente?")) botao.closest("tr").remove();
+    }
+
+    function editarCliente(botao) {
+      const row = botao.closest("tr");
+      editMode = true;
+      editRow = row;
+      document.getElementById("cpf").value = row.cells[1].textContent;
+      document.getElementById("nome").value = row.cells[3].textContent;
+      document.getElementById("telefone").value = row.cells[4].textContent;
+      document.getElementById("endereco").value = row.cells[5].textContent;
+      document.getElementById("tituloForm").textContent = "Editar Cliente";
+      const offcanvas = new bootstrap.Offcanvas(document.getElementById("add-cliente"));
+      offcanvas.show();
+    }
+  </script>
 </body>
+
 </html>
