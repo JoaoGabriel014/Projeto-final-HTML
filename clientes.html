@@ -199,7 +199,7 @@
     <script>
         const form = document.getElementById("clienteForm");
         const clientesList = document.getElementById("clientesList");
-        const MAX_CLIENTES = 10;
+        const MAX_CLIENTES = 20;
         let clientId = 11; // Continuar a partir do 11, pois já temos 10 clientes
         let editMode = false;
         let editRow = null;
@@ -303,5 +303,31 @@
             offcanvas.show();
         }
     </script>
+    <script>
+        // Máscara para CPF
+        const cpfInput = document.getElementById("cpf");
+        cpfInput.addEventListener("input", () => {
+            let value = cpfInput.value.replace(/\D/g, ""); // Remove tudo o que não for número
+            if (value.length > 11) value = value.slice(0, 11); // Limita a 11 números
+            value = value.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o primeiro ponto
+            value = value.replace(/(\d{3})(\d)/, "$1.$2"); // Adiciona o segundo ponto
+            value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Adiciona o traço
+            cpfInput.value = value;
+        });
+    
+        // Máscara para Telefone
+        const telefoneInput = document.getElementById("telefone");
+        telefoneInput.addEventListener("input", () => {
+            let value = telefoneInput.value.replace(/\D/g, ""); // Remove tudo o que não for número
+            if (value.length > 11) value = value.slice(0, 11); // Limita a 11 números
+            if (value.length <= 10) {
+                value = value.replace(/(\d{2})(\d{4})(\d{4})$/, "($1) $2-$3"); // Máscara para números com 10 dígitos
+            } else {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3"); // Máscara para números com 11 dígitos
+            }
+            telefoneInput.value = value;
+        });
+    </script>
+    
 </body>
 </html>
