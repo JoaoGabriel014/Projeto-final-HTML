@@ -1,0 +1,27 @@
+/* Styles extraídos de clientes.html (corrigido: "boby" -> "body") */
+body {
+  background-color: #f5f6fa;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar { background-color: #002b64; }
+.navbar a { color: white !important; font-weight: 500; margin-left: 15px; text-decoration: none; }
+.navbar a:hover { text-decoration: underline; }
+
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+img.rounded-circle { object-fit: cover; }
+
+@media (max-width: 768px) {
+  nav .btn { margin-top: 5px; width: 100%; }
+  .offcanvas { width: 100% !important; }
+  body { padding: 10px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  body { background-color: #ececec; color: #000000; }
+  .card, .offcanvas, table { background-color: #dddddd; color: #000000; }
+  .table-dark th { background-color: #1b1b1b !important; }
+}

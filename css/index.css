@@ -1,0 +1,21 @@
+/* Styles extraídos de index.html */
+.bg-imagem {
+  /* caminho relativo ao arquivo CSS: voltar uma pasta para acessar /img */
+  background: url("../img/Gemini_Generated_Image_1gm6tp1gm6tp1gm6.png") no-repeat center center/cover;
+  color: white;
+}
+
+.login-box {
+  background-color: rgba(49, 49, 49, 0.9);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(141, 100, 253, 0.226);
+  width: 100%;
+  max-width: 400px;
+}
+
+.logo {
+  width: 180px;
+  display: block;
+  margin: 0 auto 20px auto;
+}
