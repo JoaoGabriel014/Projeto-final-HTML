@@ -6,23 +6,25 @@
   <title>Porsche Macan T | AUTOFLEX</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/custom.css">
+  <style>
+    .navbar a {
+  text-decoration: none;
+}
+  </style>
 </head>
 <body class="bg-light">
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-    <a class="navbar-brand" href="#">
-      <img src="img/logo.png" alt="Autoflex" style="max-width:60px;">
-    </a>
-    <div class="ms-auto">
-      <a href="dashboard.html" class="btn btn-outline-light me-2">Dashboard</a>
-      <a href="veiculos.html" class="btn btn-outline-light me-2">Veículos</a>
-      <a href="clientes.html" class="btn btn-outline-light me-2">Clientes</a>
-      <a href="index.html" class="btn btn-outline-light">
-        <img src="img/log-out.svg" alt="Sair" style="width:18px;">
-      </a>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg px-4" style="background-color: #002b64; padding-top: 12px; padding-bottom: 12px; border-bottom: none; box-shadow: none;">
+  <a href="../dashboard.html" class="d-flex align-items-center">
+    <img src="../img/AutoLogo.png" alt="Autoflex" style="max-height: 20px; object-fit: contain;">
+  </a>
+  <div class="ms-auto d-flex align-items-center gap-4">
+    <a href="../clientes.html" class="text-white fw-bold">Clientes</a>
+    <a href="../veiculos.html" class="text-white fw-bold">Veículos</a>
+    <a href="../index.html" class="text-white fw-bold">Sair</a>
+  </div>
+</nav>
 
   <div class="container my-5">
     <div class="row g-4">

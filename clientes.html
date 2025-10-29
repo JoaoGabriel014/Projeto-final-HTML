@@ -6,40 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <title>Clientes - Locadora</title>
+  <script src="https://unpkg.com/feather-icons"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
+    boby{
+     background-color: #f5f6fa;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        .navbar {
+    .navbar {
       background-color: #002b64;
     }
 
     .navbar a {
       color: white !important;
       font-weight: 500;
+      margin-left: 15px;
+      text-decoration: none;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      height: 100%;
-      width: 100%;
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #ffffff;
-      -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    nav {
-      flex-wrap: wrap;
+    .navbar a:hover {
+      text-decoration: underline;
     }
 
     .table-responsive {
@@ -87,18 +77,20 @@
 </head>
 
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg px-4">
-    <div class="col-12 col-md">Locadora de veículos</div>
-    <div class="col-12 col-md text-md-end text-center mt-2 mt-md-0">
-      <a href="dashboard.html" class="btn btn-outline-light m-1">Dashboard</a>
-      <a href="veiculos.html" class="btn btn-outline-light m-1">Veículos</a>
-      <a href="clientes.html" class="btn btn-outline-light m-1">Clientes</a>
-      <a href="index.html" class="btn btn-outline-light m-1">Sair</a>
-    </div>
-  </nav>
 
-  <div class="container my-3">
+<nav class="navbar navbar-expand-lg px-4" style="background-color: #002b64; padding-top: 12px; padding-bottom: 12px;">
+  <a href="dashboard.html" class="d-flex align-items-center">
+    <img src="img/AutoLogo.png" alt="Autoflex" style="max-height: 20px; object-fit: contain;">
+    <span class="ms-2 text-white fw-bold"></span>
+  </a>
+  <div class="ms-auto d-flex align-items-center">
+    <a href="clientes.html">Clientes</a>
+    <a href="veiculos.html">Veículos</a>
+    <a href="index.html">Sair</a>
+  </div>
+</nav>
+
+  <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center flex-wrap">
       <h2 class="mt-3">Clientes</h2>
       <div>
@@ -137,17 +129,21 @@
         <label for="cpf">CPF</label>
         <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" class="form-control mb-3" required>
 
-        <button type="submit" class="btn btn-dark rounded-pill w-100">Salvar</button>
+        <button type="submit" class="btn btn-light btn-custom btn-green">
+          <i data-feather="check-circle"></i> Salvar
+        </button>
       </form>
     </div>
   </div>
 
   <hr>
 
-  <!-- BOTÃO PARA OCULTAR/MOSTRAR TABELA -->
-  <div class="container mb-3 text-center">
-    <button id="toggleTabelaBtn" class="btn btn-secondary rounded-pill">Ocultar tabela</button>
-  </div>
+<div class="container mb-3 text-center">
+  <button id="toggleTabelaBtn" class="btn btn-secondary rounded-pill d-flex align-items-center justify-content-center gap-2 mx-auto">
+    <i data-feather="eye"></i>
+    <span>Ocultar tabela</span>
+  </button>
+</div>
 
   <!-- TABELA -->
   <section id="tabelaClientes" class="card card-body">
@@ -291,6 +287,10 @@
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
   <script>
     const form = document.getElementById("clienteForm");
     const clientesList = document.getElementById("clientesList");
@@ -299,19 +299,6 @@
     let clientId = clientesList.rows.length + 1;
     let editMode = false;
     let editRow = null;
-
-    const toggleBtn = document.getElementById("toggleTabelaBtn");
-    const tabela = document.getElementById("tabelaClientes");
-
-    toggleBtn.addEventListener("click", () => {
-      if (tabela.style.display === "none") {
-        tabela.style.display = "";
-        toggleBtn.textContent = "Ocultar tabela";
-      } else {
-        tabela.style.display = "none";
-        toggleBtn.textContent = "Mostrar tabela";
-      }
-    });
 
     buscaInput.addEventListener("input", function () {
       const termo = this.value.toLowerCase();
@@ -449,6 +436,25 @@
       offcanvas.show();
     }
   </script>
+
+<script>
+  feather.replace();
+
+  const toggleBtn = document.getElementById("toggleTabelaBtn");
+  const tabela = document.getElementById("tabelaClientes");
+
+  toggleBtn.addEventListener("click", () => {
+    const ocultando = tabela.style.display !== "none";
+
+    // alterna a visibilidade
+    tabela.style.display = ocultando ? "none" : "";
+
+    // troca ícone e texto
+    toggleBtn.innerHTML = ocultando
+      ? `${feather.icons["eye-off"].toSvg()} <span>Mostrar tabela</span>`
+      : `${feather.icons["eye"].toSvg()} <span>Ocultar tabela</span>`;
+  });
+</script>
 </body>
 
 </html>
