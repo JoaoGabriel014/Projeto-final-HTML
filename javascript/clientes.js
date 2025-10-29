@@ -2,7 +2,7 @@
 const form = document.getElementById("clienteForm");
 const clientesList = document.getElementById("clientesList");
 const buscaInput = document.getElementById("buscaCliente");
-const MAX_CLIENTES = 10;
+const MAX_CLIENTES = 20;
 let clientId = clientesList ? clientesList.rows.length + 1 : 1;
 let editMode = false;
 let editRow = null;
