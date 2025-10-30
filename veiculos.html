@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/veiculos.css">
     <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
-    <nav class="row bg-dark p-3 text-white">
-            <h1 class="mt-5">
-                <img src="img/logo.png" alt="Loca Cars" class="img-fluid" style="max-width: 250px;">
-            </h1>
-        <div class="col text-end">
-            <a href="dashboard.html" class="btn btn-outline-light">Dashboard</a>
-            <a href="veiculos.html" class="btn btn-outline-light">Veiculos</a>
-            <a href="clientes.html" class="btn btn-outline-light">Cliente</a>
-            <a href="index.html" class="btn btn-outline-light">Sair</a>
+    <nav class="navbar navbar-expand-lg px-4" style="background-color: #002b64; padding-top: 12px; padding-bottom: 12px; align-items: center;">
+        <a href="dashboard.html" class="d-flex align-items-center">
+            <img src="img/AutoLogo.png" alt="Loca Cars" style="max-height: 20px; object-fit: contain;">
+            <span class="ms-2 text-white fw-bold"></span>
+        </a>
+        <div class="ms-auto d-flex gap-4">
+            <a href="veiculos.html" class="text-white">Veículos</a>
+            <a href="clientes.html" class="text-white">Clientes</a>
+            <a href="index.html" class="text-white">Sair</a>
         </div>
     </nav>
-</nav>
 <div class="d-flex justify-content-between align-items-center">
     <h2 class="mt-3">Veiculos</h2>
     <div>
@@ -62,7 +63,7 @@
 </div>
 
 <hr>
-<section class="card card-boby">
+<section class="card card-body">
     <div class="container">
         <table class="table table-striped table-bordered">
             <thead class="table-dark">
@@ -78,9 +79,10 @@
                     <th>Ações</th>
                 </tr>
             </thead>
+            <tbody>
             <tr>
                 <td>1</td>
-                <td><img class="rounded-circle" src="img-car/00033711.jpg" width="50"></td>
+                <td><img class="car-img" src="img-car/00033711.jpg" alt="Foto do carro"></td>
                 <td>Porsche</td>
                 <td>Macan T</td>
                 <td>2022</td>
@@ -190,7 +192,13 @@
                     <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
                 </td>
             </tr>
+            </tbody>
+        </table>
             
+
+<footer class="site-footer">
+    <p class="mb-0">© 2025 AUTOFLEX | Página criada para fins acadêmicos</p>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>

@@ -1,0 +1,39 @@
+/* Global styles applied across all pages */
+:root{
+  --primary: #002b64; /* cor da navbar / footer */
+  --text-on-primary: #ffffff;
+}
+
+html, body { height: 100%; }
+
+/* Navbar padrão */
+.navbar {
+  background-color: var(--primary) !important;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  box-shadow: none;
+}
+.navbar a, .navbar .nav-link, .navbar .text-white { color: var(--text-on-primary) !important; }
+.navbar .ms-auto a { text-decoration: none; }
+
+/* Links do header alinhados */
+.navbar .ms-auto { gap: 1rem; }
+
+/* Footer padrão (mesma cor da navbar) */
+.site-footer {
+  background-color: var(--primary);
+  color: var(--text-on-primary);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
+
+/* Botões e pequenos ajustes comuns */
+.btn-dark { background-color: #222; border-color: #222; }
+.rounded-circle { object-fit: cover; }
+
+/* Containers e cards */
+.card { border-radius: 8px; }
+
+/* Pequenas utilidades para manter consistência */
+.text-primary { color: #0d6efd !important; }
