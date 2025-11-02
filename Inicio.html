@@ -12,19 +12,52 @@
     :root {
       --vermelho-escuro: #8b0000;
       --vermelho-claro: #e60000;
-      --preto: #0f0f0f;
-      --cinza: #f5f5f5;
+      --preto: #000000;
       --branco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--cinza);
-      color: var(--preto);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      overflow: hidden;
     }
 
+    .left-side {
+      flex: 1;
+      background: url('img/locadora 2.png') center/cover no-repeat;
+      position: relative;
+    }
+
+    .left-side::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+
+    /* Lado direito */
+    .right-side {
+      flex: 1;
+      background: linear-gradient(to bottom right, var(--preto), var(--vermelho-escuro));
+      color: var(--branco);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 60px;
+      position: relative;
+    }
+
+    
     .navbar {
-      background-color: var(--preto);
+      background-color: rgba(0, 0, 0, 0.9);
+      border-radius: 8px;
+      padding: 10px 20px;
     }
 
     .navbar-brand, .nav-link {
@@ -35,17 +68,28 @@
       color: var(--vermelho-claro) !important;
     }
 
-    .hero {
-      background: linear-gradient(to right, var(--preto), var(--vermelho-escuro));
-      color: var(--branco);
-      padding: 80px 0;
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; 
+      text-align: center;  
+      gap: 20px;
+    }
+
+    .hero-content h1 span {
+      color: var(--vermelho-claro);
     }
 
     .form-card {
-      background: var(--branco);
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--preto);
+      border-radius: 12px;
       padding: 25px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      width: 100%;
+      max-width: 360px;
     }
 
     .btn-reservar {
@@ -53,96 +97,107 @@
       color: var(--branco);
       border: none;
       font-weight: bold;
+      transition: background-color 0.2s ease;
     }
 
     .btn-reservar:hover {
       background-color: #b30000;
-      color: var(--branco);
-    }
-
-    .hero h1 span {
-      color: var(--vermelho-claro);
     }
 
     footer {
-      background-color: var(--preto);
-      color: var(--branco);
       text-align: center;
-      padding: 15px 0;
-      margin-top: 40px;
+      color: var(--branco);
+      font-size: 0.9rem;
+      padding: 10px;
+      opacity: 0.8;
     }
 
-    @media (max-width: 768px) {
-      .hero {
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left-side {
+        height: 40vh;
+      }
+
+      .right-side {
+        height: auto;
+        padding: 30px 20px;
+      }
+
+      .hero-content {
+        align-items: center;
         text-align: center;
+      }
+
+      .form-card {
+        margin-top: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#"><i class="bi bi-car-front-fill text-danger"></i> AUTOFLEX </a>
-      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li> 
-          <li class="nav-item"><a class="nav-link" href="dashboard.html">Carros</a></li>
-          <li class="nav-item"><a class="nav-link" href="veiculos.html">Lista de veículos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
-        </ul>
-        <div class="ms-3">
-          <a href="#" class="text-danger fw-semibold me-2">Login</a> |
-          <a href="#" class="text-danger fw-semibold ms-2">Cadastrar</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <div class="left-side"></div>
 
-  <section class="hero">
-    <div class="container">
-      <div class="row align-items-center">
-
-        <div class="col-md-5">
-          <div class="form-card">
-            <h4 class="text-center mb-3 fw-bold text-danger">Reserve seu carro</h4>
-            <form>
-              <div class="mb-3">
-                <label class="form-label fw-semibold">Local de retirada</label>
-                <input type="text" class="form-control" placeholder="Digite a cidade ou aeroporto" required>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label class="form-label fw-semibold">Data</label>
-                  <input type="date" class="form-control" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label fw-semibold">Hora</label>
-                  <input type="time" class="form-control" required>
-                </div>
-              </div>
-              <div class="d-grid">
-                <button type="submit" class="btn btn-reservar">Reservar Agora</button>
-              </div>
-            </form>
+  <div class="right-side">
+    
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+          <i class="bi bi-car-front-fill text-danger"></i> AUTOFLEX
+        </a>
+        <div class="collapse navbar-collapse d-flex justify-content-end">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">Carros</a></li>
+            <li class="nav-item"><a class="nav-link" href="veiculos.html">Lista de veículos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+          </ul>
+          <div class="ms-3">
+            <a href="#" class="text-danger fw-semibold me-2">Login</a> |
+            <a href="#" class="text-danger fw-semibold ms-2">Cadastrar</a>
           </div>
         </div>
+      </div>
+    </nav>
 
-        <div class="col-md-7 text-center text-md-start mt-4 mt-md-0">
-          <h1 class="display-5 fw-bold">Acelere para <br><span>destinos incríveis!</span></h1>
-          <p class="fs-4 mt-3">Seu carro, sua liberdade. Vem com a gente!</p>
-          <img src="https://cdn.pixabay.com/photo/2017/08/06/08/40/car-2597700_1280.jpg"
-              img alt="Carro Importado" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.m3motorcube.com%2F2020%2F11%2F20%2Fnews-mondo-motori%2Fdodge-challenger-50th-anniversary-edition-2%2F&psig=AOvVaw2viaAhCNwxfMTXpMDmouCb&ust=1762000482182000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCNij6bq5zpADFQAAAAAdAAAAABBz"
+    <div class="hero-content">
+      <div>
+        <h1 class="display-6 fw-bold">Acelere para <br><span>destinos incríveis!</span></h1>
+        <p class="fs-5 mt-2">Seu carro, sua liberdade. Vem com a gente!</p>
+      </div>
+
+      <div class="form-card">
+        <h5 class="text-center mb-3 fw-bold text-danger">Reserve seu carro</h5>
+        <form>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Local de retirada</label>
+            <input type="text" class="form-control" placeholder="Digite a cidade ou aeroporto" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Data</label>
+              <input type="date" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Hora</label>
+              <input type="time" class="form-control" required>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-reservar">Reservar Agora</button>
+          </div>
+        </form>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <p class="mb-0">&copy; 2025 Locadora Turbo. Todos os direitos reservados.</p>
-  </footer>
+    <footer>
+      &copy; 2025 Locadora AUTOFLEX. Todos os direitos reservados.
+    </footer>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
