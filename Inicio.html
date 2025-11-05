@@ -151,11 +151,11 @@
             <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li>
             <li class="nav-item"><a class="nav-link" href="dashboard.html">Carros</a></li>
             <li class="nav-item"><a class="nav-link" href="veiculos.html">Lista de veículos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
           </ul>
           <div class="ms-3" id="authArea">
             <span id="authLoggedOut">
-              <a href="#" class="text-danger fw-semibold me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a> |
+              <a href="index.html?showModal=true" class="text-danger fw-semibold me-2">Login</a>
               <a href="#" class="text-danger fw-semibold ms-2" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastrar</a>
             </span>
             <span id="authLoggedIn" class="d-none">
@@ -281,33 +281,6 @@
 
             <div class="d-grid">
               <button type="submit" class="btn btn-danger">Cadastrar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL DE LOGIN -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title" id="loginModalLabel">Entrar</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form id="loginForm">
-            <div class="mb-3">
-              <label for="loginEmail" class="form-label">E-mail</label>
-              <input type="email" id="loginEmail" class="form-control" placeholder="seu@exemplo.com" required>
-            </div>
-            <div class="mb-3">
-              <label for="loginSenha" class="form-label">Senha</label>
-              <input type="password" id="loginSenha" class="form-control" placeholder="Senha" required>
-            </div>
-            <div class="d-grid">
-              <button type="submit" class="btn btn-dark">Entrar</button>
             </div>
           </form>
         </div>
