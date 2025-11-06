@@ -4,31 +4,121 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo - Loca Cars</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/catalog.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --vermelho-escuro: #8b0000;
+      --vermelho-claro: #e60000;
+      --preto: #000000;
+      --branco: #ffffff;
+    }
+
+    body {
+      background: linear-gradient(to bottom, var(--vermelho-claro) 0%, var(--vermelho-escuro) 40%, var(--preto) 100%);
+      color: var(--branco);
+      font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding-bottom: 60px;
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85) !important;
+      border-bottom: 2px solid var(--vermelho-claro);
+    }
+
+    .navbar a {
+      color: var(--branco) !important;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .navbar a:hover {
+      color: var(--vermelho-claro) !important;
+    }
+
+  
+    .filter-sidebar {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--preto);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .car-card {
+      background-color: rgba(255, 255, 255, 0.95);
+      color: var(--preto);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .car-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(230, 0, 0, 0.6);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .price {
+      font-weight: bold;
+      color: var(--vermelho-escuro);
+    }
+
+  
+    .site-footer {
+      text-align: center;
+      color: var(--branco);
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 15px;
+      border-top: 2px solid var(--vermelho-claro);
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+
+   
+    @media (max-width: 992px) {
+      .filter-sidebar {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg px-4" style="background-color: #002b64; padding-top: 12px; padding-bottom: 12px; align-items: center;">
+
+  <nav class="navbar navbar-expand-lg px-4">
     <a href="dashboard.html" class="d-flex align-items-center">
-        <img src="img/AutoLogo.png" alt="Loca Cars" style="max-height: 20px; object-fit: contain;">
-        <span class="ms-2 text-white fw-bold"></span>
+      <img src="img/AutoLogo.png" alt="AUTOFLEX" style="max-height: 30px; object-fit: contain;">
     </a>
     <div class="ms-auto d-flex gap-4">
-        <a href="clientes.html">Cliente</a>
-        <a href="veiculos.html">Veiculos</a>
-        <a href="index.html">Sair</a>
+      <a href="clientes.html">Clientes</a>
+      <a href="veiculos.html">Lista de veículos</a>
+      <a href="contato.html">Contatos</a>
+      <a href="Inicio.html">Início</a>
+      <a href="index.html">Sair</a> 
     </div>
-</nav>
+  </nav>
 
-  <div class="container-fluid mt-4">
+  
+  <div class="container-fluid mt-4 mb-5">
     <div class="row">
-      <!-- Filtros -->
+      
       <div class="col-md-3">
         <div class="filter-sidebar">
-          <h5 class="mb-3">Filtros</h5>
+          <h5 class="mb-3 fw-bold">Filtros</h5>
 
           <p class="fw-bold">Cilindros</p>
           <div class="form-check"><input class="form-check-input" type="checkbox"> <label>3</label></div>
@@ -46,7 +136,7 @@
 
       <div class="col-md-9">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4>Catálogo de Veículos</h4>
+          <h2>Catálogo de Veículos</h2> 
           <select class="form-select w-auto">
             <option>Mais Relevantes</option>
             <option>Menor Preço</option>
@@ -67,16 +157,16 @@
           </div>
 
           <div class="col-md-4">
-            <a href="pag car/pag1.html" class="text-decoretion-none">
-            <div class="card car-card">
-              <img src="img-car/00033711.jpg" alt="porsche macan t">
-              <div class="card-body">
-                <h5>PORSCHE MACAN T</h5>
-                <p class="car-info">2022/2022 · SUV · Branco · 15000 km</p>
-                <p class="price">R$ 2500</p>
+            <a href="pag car/pag1.html" class="text-decoration-none">
+              <div class="card car-card">
+                <img src="img-car/00033711.jpg" alt="Porsche Macan T">
+                <div class="card-body">
+                  <h5>PORSCHE MACAN T</h5>
+                  <p class="car-info">2022/2022 · SUV · Branco · 15000 km</p>
+                  <p class="price">R$ 250.000,00</p>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
           </div>
 
           <div class="col-md-4">
@@ -89,49 +179,12 @@
               </div>
             </div>
           </div>
-
-          <div class="row g-3">
-            <div class="col-md-4">
-              <div class="card car-card">
-                <img src="img/carro1.jpg" alt="Carro">
-                <div class="card-body">
-                  <h5>CAOA CHERY TIGGO 5X PRO</h5>
-                  <p class="car-info">2025/2026 · SUV · Branco · 9576 km</p>
-                  <p class="price">R$ 136.000,00</p>
-                </div>
-              </div>
-            </div>
-
-            <a href="pag1.html">
-            <div class="col-md-4">
-              <div class="card car-card">
-              </a>
-                <img src="../img-car/00033711.jpg" alt="porsche macan t">
-                <div class="card-body">
-                  <h5>PORSCHE MACAN T</h5>
-                  <p class="car-info">2022/2022 · SUV · Branco · 15000 km</p>
-                  <p class="price">R$ 2500</p>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-md-4">
-              <div class="card car-card">
-                <img src="img/carro3.jpg" alt="Carro">
-                <div class="card-body">
-                  <h5>M. BENZ GLA200 AMG LINE</h5>
-                  <p class="car-info">2023/2024 · Hatch · Prata · 12212 km</p>
-                  <p class="price">R$ 305.000,00</p>
-                </div>
-              </div>
-            </div> 
-            
-
         </div>
       </div>
     </div>
   </div>
 
+ 
   <footer class="site-footer">
     <p class="mb-0">© 2025 AUTOFLEX | Página criada para fins acadêmicos</p>
   </footer>
