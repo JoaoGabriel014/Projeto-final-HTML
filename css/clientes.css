@@ -10,6 +10,7 @@ img.rounded-circle {
   nav .btn {
     margin-top: 5px;
     width: 100%;
+    background-color: #000000;
   }
   .offcanvas {
     width: 100% !important;

@@ -1,9 +1,9 @@
 /* Global styles applied across all pages */
 :root{
-  --primary: #002b64; /* cor da navbar / footer */
+  --primary: #000000; /* cor da navbar / footer */
   --text-on-primary: #ffffff;
+  --hover-red: #e60000; /* nova cor para hover */
 }
-
 html, body { height: 100%; }
 
 /* Navbar padrão */
@@ -13,11 +13,21 @@ html, body { height: 100%; }
   padding-bottom: 12px;
   box-shadow: none;
 }
+
 .navbar a, .navbar .nav-link, .navbar .text-white { color: var(--text-on-primary) !important; }
-.navbar .ms-auto a { text-decoration: none; }
+.navbar .ms-auto a { 
+  text-decoration: none; 
+  transition: color 0.2s ease;
+}
+
+.navbar .ms-auto a:hover {
+  color: var(--hover-red) !important;
+}
 
 /* Links do header alinhados */
-.navbar .ms-auto { gap: 1rem; }
+.navbar .ms-auto { 
+  gap: 1rem; 
+}
 
 /* Footer padrão (mesma cor da navbar) */
 .site-footer {
