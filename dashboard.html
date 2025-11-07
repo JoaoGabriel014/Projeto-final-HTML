@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo - Loca Cars</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AUTOFLEX - Aluguel de Carros</title>
 
+  <!-- Bootstrap e ícones -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -16,178 +17,408 @@
       --branco: #ffffff;
     }
 
+    * { box-sizing: border-box; }
+
     body {
-      background: linear-gradient(to bottom, var(--vermelho-claro) 0%, var(--vermelho-escuro) 40%, var(--preto) 100%);
-      color: var(--branco);
       font-family: 'Segoe UI', sans-serif;
-      min-height: 100vh;
       margin: 0;
-      padding-bottom: 60px;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .left-side {
+      flex: 0.9;
+      background: url('img/novo foto carro.png') center/cover no-repeat;
+    }
+
+    .right-side {
+      flex: 1.1;
+      background: linear-gradient(to bottom right, var(--vermelho-escuro), var(--preto));
+
+      color: var(--branco);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 70px;
+      overflow-y: auto;
     }
 
     .navbar {
-      background-color: rgba(0, 0, 0, 0.85) !important;
-      border-bottom: 2px solid var(--vermelho-claro);
+      background-color: rgba(0, 0, 0, 0.9);
+      border-radius: 8px;
+      padding: 10px 28px;
+      white-space: nowrap;
     }
-
-    .navbar a {
+   
+    .navbar-brand, .nav-link {
       color: var(--branco) !important;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
     }
 
-    .navbar a:hover {
+    .nav-link:hover {
       color: var(--vermelho-claro) !important;
     }
 
-  
-    .filter-sidebar {
-      background-color: rgba(255, 255, 255, 0.9);
+    .navbar-nav {
+      gap: 18px; /* 🔹 espaçamento entre links */
+    }
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .hero-content h1 span {
+      color: var(--vermelho-claro);
+    }
+
+    .form-card {
+      background: rgba(255, 255, 255, 0.95);
       color: var(--preto);
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-    }
-
-    .car-card {
-      background-color: rgba(255, 255, 255, 0.95);
-      color: var(--preto);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
-
-    .car-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(230, 0, 0, 0.6);
-    }
-
-    .car-card img {
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      max-width: 420px;
     }
 
-    .price {
+    .btn-reservar {
+      background-color: var(--vermelho-claro);
+      color: var(--branco);
+      border: none;
       font-weight: bold;
-      color: var(--vermelho-escuro);
+      transition: background-color 0.2s ease;
     }
 
-  
-    .site-footer {
+    .btn-reservar:hover {
+      background-color: var(--vermelho-escuro);
+    }
+
+    footer {
       text-align: center;
       color: var(--branco);
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 15px;
-      border-top: 2px solid var(--vermelho-claro);
-      position: fixed;
-      bottom: 0;
-      width: 100%;
       font-size: 0.9rem;
+      padding: 10px;
+      opacity: 0.8;
     }
-
-   
+    
     @media (max-width: 992px) {
-      .filter-sidebar {
-        margin-bottom: 20px;
+      body {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: auto;
+      }
+
+      .left-side {
+        height: 40vh;
+        width: 100%;
+      }
+
+      .right-side {
+        padding: 20px;
+      }
+
+      .form-card {
+        max-width: 100%;
+        margin-top: 20px;
+      }
+
+      .navbar {
+        padding: 8px 12px;
       }
     }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 1.5rem;
+      }
+      .hero-content p {
+        font-size: 0.9rem;
+      }
+      .right-side {
+        padding: 15px;
+      }
+      .form-card {
+        padding: 15px;
+      }
+      .navbar-brand {
+        font-size: 1rem;
+      }
+    }
+   
   </style>
 </head>
 <body>
 
+  <!-- LADO ESQUERDO -->
+  <div class="left-side"></div>
 
-  <nav class="navbar navbar-expand-lg px-4">
-    <a href="dashboard.html" class="d-flex align-items-center">
-      <img src="img/AutoLogo.png" alt="AUTOFLEX" style="max-height: 30px; object-fit: contain;">
-    </a>
-    <div class="ms-auto d-flex gap-4">
-      <a href="clientes.html">Clientes</a>
-      <a href="veiculos.html">Lista de veículos</a>
-      <a href="contato.html">Contatos</a>
-      <a href="Inicio.html">Início</a>
-      <a href="index.html">Sair</a> 
-    </div>
-  </nav>
-
-  
-  <div class="container-fluid mt-4 mb-5">
-    <div class="row">
-      
-      <div class="col-md-3">
-        <div class="filter-sidebar">
-          <h5 class="mb-3 fw-bold">Filtros</h5>
-
-          <p class="fw-bold">Cilindros</p>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label>3</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label>4</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label>6</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label>8</label></div>
-
-          <hr>
-
-          <p class="fw-bold">Indução</p>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label>Turbo</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label>Bi-Turbo</label></div>
+  <!-- LADO DIREITO -->
+  <div class="right-side">
+    
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">
+          <i class="bi bi-car-front-fill text-danger"></i> AUTOFLEX
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span> <!-- ✅ ícone visível agora -->
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">Carros</a></li>
+            <li class="nav-item"><a class="nav-link" href="veiculos.html">Lista de veículos</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+          <div class="ms-3" id="authArea">
+            <span id="authLoggedOut">
+              <a href="index.html?showModal=true" class="text-danger fw-semibold me-2">Login</a>
+              <a href="#" class="text-danger fw-semibold ms-2" data-bs-toggle="modal" data-bs-target="#cadastroModal">Cadastrar</a>
+            </span>
+            <span id="authLoggedIn" class="d-none">
+              <span class="text-white fw-semibold me-2" id="greeting"></span>
+              <a href="#" id="logoutLink" class="text-warning">Sair</a>
+            </span>
+          </div>
         </div>
       </div>
+    </nav>
 
-      <div class="col-md-9">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2>Catálogo de Veículos</h2> 
-          <select class="form-select w-auto">
-            <option>Mais Relevantes</option>
-            <option>Menor Preço</option>
-            <option>Maior Preço</option>
-          </select>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="hero-content">
+      <div>
+        <h1 class="display-6 fw-bold">Acelere para <br><span>destinos incríveis!</span></h1>
+        <p class="fs-5 mt-2">Seu carro, sua liberdade. Vem com a gente!</p>
+      </div>
+
+      <div class="form-card">
+        <h5 class="text-center mb-3 fw-bold text-danger">Reserve seu carro</h5>
+        <form id="reservaForm">
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Local de retirada</label>
+            <input type="text" class="form-control" placeholder="Digite a cidade ou aeroporto" required>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Data</label>
+              <input type="date" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold">Hora</label>
+              <input type="time" class="form-control" required>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-reservar">Reservar Agora</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer>
+      &copy; 2025 Locadora AUTOFLEX. Todos os direitos reservados.
+    </footer>
+  </div>
+
+  <!-- MODAL DE CADASTRO -->
+  <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="cadastroModalLabel">Cadastro de Cliente</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
-
-        <div class="row g-3">
-          <div class="col-md-4">
-            <div class="card car-card">
-              <img src="img/carro1.jpg" alt="Carro">
-              <div class="card-body">
-                <h5>CAOA CHERY TIGGO 5X PRO</h5>
-                <p class="car-info">2025/2026 · SUV · Branco · 9576 km</p>
-                <p class="price">R$ 136.000,00</p>
+        <div class="modal-body bg-light">
+          <form id="cadastroForm">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="nome" class="form-label">Nome completo</label>
+                <input type="text" class="form-control" id="nome" placeholder="Seu nome completo" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" placeholder="exemplo@email.com" required>
               </div>
             </div>
-          </div>
 
-          <div class="col-md-4">
-            <a href="pag car/pag1.html" class="text-decoration-none">
-              <div class="card car-card">
-                <img src="img-car/00033711.jpg" alt="Porsche Macan T">
-                <div class="card-body">
-                  <h5>PORSCHE MACAN T</h5>
-                  <p class="car-info">2022/2022 · SUV · Branco · 15000 km</p>
-                  <p class="price">R$ 250.000,00</p>
-                </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="telefone" placeholder="(xx) xxxxx-xxxx" required>
               </div>
-            </a>
-          </div>
-
-          <div class="col-md-4">
-            <div class="card car-card">
-              <img src="img/carro3.jpg" alt="Carro">
-              <div class="card-body">
-                <h5>M. BENZ GLA200 AMG LINE</h5>
-                <p class="car-info">2023/2024 · Hatch · Prata · 12212 km</p>
-                <p class="price">R$ 305.000,00</p>
+              <div class="col-md-6 mb-3">
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" required>
               </div>
             </div>
-          </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" placeholder="Crie uma senha" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="confirmaSenha" class="form-label">Confirme a senha</label>
+                <input type="password" class="form-control" id="confirmaSenha" placeholder="Confirme a senha" required>
+              </div>
+            </div>
+
+            <hr>
+            <h6 class="fw-bold text-danger mb-3">Endereço</h6>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="cep" class="form-label">CEP</label>
+                <input id="cep" type="text" class="form-control" placeholder="Ex: 12345678" required>
+              </div>
+              <div class="col-md-8 mb-3">
+                <label for="logradouro" class="form-label">Logradouro</label>
+                <input id="logradouro" type="text" class="form-control" placeholder="Rua, Avenida..." required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="numero" class="form-label">Número</label>
+                <input id="numero" type="text" class="form-control" placeholder="Ex: 123" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input id="bairro" type="text" class="form-control" placeholder="Ex: Centro" required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input id="cidade" type="text" class="form-control" placeholder="Ex: Fortaleza" required>
+              </div>
+              <div class="col-md-2 mb-3">
+                <label for="uf" class="form-label">UF</label>
+                <input id="uf" type="text" class="form-control" placeholder="Ex: CE" required>
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-danger">Cadastrar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 
- 
-  <footer class="site-footer">
-    <p class="mb-0">© 2025 AUTOFLEX | Página criada para fins acadêmicos</p>
-  </footer>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- SCRIPT DE AUTENTICAÇÃO E VIA CEP -->
+  <script>
+    // VIA CEP
+    const cepInput = document.getElementById('cep');
+    if (cepInput) {
+      cepInput.addEventListener('blur', () => {
+        const cep = cepInput.value.replace(/\D/g, '');
+        if (cep.length !== 8) return;
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+          .then(r => r.json())
+          .then(data => {
+            if (!data || data.erro) return alert('CEP inválido ou não encontrado.');
+            document.getElementById('logradouro').value = data.logradouro;
+            document.getElementById('bairro').value = data.bairro;
+            document.getElementById('cidade').value = data.localidade;
+            document.getElementById('uf').value = data.uf;
+          })
+          .catch(() => alert('Erro ao buscar CEP.'));
+      });
+    }
+
+    // LOCAL STORAGE
+    const USERS_KEY = 'autoflex_users';
+    const CURRENT_KEY = 'autoflex_currentUser';
+
+    const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
+    const saveUsers = (users) => localStorage.setItem(USERS_KEY, JSON.stringify(users));
+
+    function setCurrentUser(user) {
+      localStorage.setItem(CURRENT_KEY, JSON.stringify(user));
+      updateAuthUI();
+    }
+
+    function getCurrentUser() {
+      return JSON.parse(localStorage.getItem(CURRENT_KEY));
+    }
+
+    function clearCurrentUser() {
+      localStorage.removeItem(CURRENT_KEY);
+      updateAuthUI();
+    }
+
+    // Atualiza UI
+    function updateAuthUI() {
+      const loggedOut = document.getElementById('authLoggedOut');
+      const loggedIn = document.getElementById('authLoggedIn');
+      const greeting = document.getElementById('greeting');
+      const user = getCurrentUser();
+
+      if (user) {
+        loggedOut.classList.add('d-none');
+        loggedIn.classList.remove('d-none');
+        greeting.textContent = `Olá, ${user.nome}`;
+      } else {
+        loggedOut.classList.remove('d-none');
+        loggedIn.classList.add('d-none');
+      }
+    }
+
+    // CADASTRO
+    document.getElementById('cadastroForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const senha = document.getElementById('senha').value;
+      const confirma = document.getElementById('confirmaSenha').value;
+
+      if (senha !== confirma) return alert('As senhas não conferem.');
+
+      const users = getUsers();
+      if (users.some(u => u.email === email)) return alert('E-mail já cadastrado.');
+
+      users.push({ nome, email, senha });
+      saveUsers(users);
+      setCurrentUser({ nome, email });
+      alert('Cadastro realizado com sucesso!');
+      bootstrap.Modal.getOrCreateInstance(document.getElementById('cadastroModal')).hide(); /* ✅ corrigido */
+      e.target.reset();
+    });
+
+    // LOGIN
+    document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const senha = document.getElementById('loginSenha').value;
+      const users = getUsers();
+      const user = users.find(u => u.email === email && u.senha === senha);
+      if (!user) return alert('E-mail ou senha inválidos.');
+      setCurrentUser({ nome: user.nome, email });
+      bootstrap.Modal.getOrCreateInstance(document.getElementById('loginModal')).hide(); /* ✅ corrigido */
+      e.target.reset();
+    });
+
+    // LOGOUT
+    document.getElementById('logoutLink')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      clearCurrentUser();
+      alert('Você saiu da conta.');
+    });
+
+    updateAuthUI();
+  </script>
 </body>
 </html>
