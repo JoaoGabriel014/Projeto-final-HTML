@@ -15,52 +15,187 @@
       --preto: #000000;
       --branco: #ffffff;
     }
+    /* upload/preview de foto do vendedor */
+    .photo-wrapper{ position:relative; background:#fff; }
+    .photo-wrapper img{ width:100%; height:150px; object-fit:cover; display:block; }
+    .photo-upload-btn{
+      position:absolute;
+      right:8px;
+      bottom:8px;
+      background:rgba(0,0,0,0.6);
+      color:#fff;
+      border-radius:6px;
+      padding:4px 8px;
+      font-size:0.85rem;
+      cursor:pointer;
+      border:none;
+    }
+    .photo-input{ display:none; }
 
-    /* Estilos personalizados */
-    .card {
-      border: 1px solid var(--vermelho-escuro);
-      border-radius: 10px;
-      overflow: hidden;
+    /* Fundo do site */
+    body {
+      /* gradiente com as variáveis pedidas */
+      background: linear-gradient(to bottom, var(--vermelho-claro) 0%, var(--vermelho-escuro) 40%, var(--preto) 100%);
+      padding-top: 76px; /* espaço para navbar fixa — ajuste se necessário */
+      min-height: 100vh;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Navbar personalizada (fundo preto) */
+    .navbar-custom {
+      background-color: #000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+      padding: 8px 12px;
+    }
+    .navbar-custom .navbar-brand {
+      color: var(--vermelho-claro);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(18px, 3.2vw, 32px);
+      letter-spacing: 4px;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      padding-left: 6px;
+      line-height: 1;
+      text-decoration: none;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.45);
+    }
+    .navbar-custom .navbar-brand:hover {
+      color: var(--vermelho-claro);
+      text-decoration: none;
+    }
+
+    /* Faz os links preencherem horizontalmente e ficarem proporcionais */
+    .navbar-custom .navbar-collapse {
+      justify-content: center;
+    }
+    .navbar-custom .navbar-nav {
+      width: 100%;
+      display: flex;
+      gap: 0;
+      align-items: center;
+    }
+    .navbar-custom .nav-item {
+      flex: 1 1 0;
+      text-align: center;
+    }
+    .navbar-custom .nav-link {
+      color: rgba(255,255,255,0.95);
+      font-weight: 700;
+      font-size: clamp(14px, 1.8vw, 18px); /* responsivo */
+      padding: .65rem 0;
+      display: inline-block;
+    }
+    .navbar-custom .nav-link:hover {
+      color: var(--vermelho-claro);
+      text-decoration: none;
+    }
+
+    /* Ajuste do toggler para exibir o ícone padrão em fundo escuro */
+    .navbar-dark .navbar-toggler-icon {
+      filter: invert(1) brightness(2);
+    }
+
+    /* Cards e conteúdo: responsividade adicional */
+    .card {
+      border: 1px solid var(--vermelho-escuro);
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
     .card-body {
       background-color: var(--branco);
       text-align: center;
+      padding: 1.25rem;
     }
 
     .card-title {
-      color: var(--vermelho-escuro);
-      font-size: 1.25rem;
-      font-weight: bold;
+      /* "Vendedor" e nome em preto conforme solicitado */
+      color: var(--preto);
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: .4rem;
     }
 
     .card-text {
       color: var(--preto);
-      font-size: 1rem;
+      font-size: .95rem;
+      margin-bottom: .6rem;
     }
-
+    
     .btn-primary {
       background-color: var(--vermelho-claro);
       border-color: var(--vermelho-claro);
+      padding: .4rem .8rem;
+      border-radius: 6px;
     }
 
-    .btn-primary:hover {
-      background-color: var(--vermelho-escuro);
-      border-color: var(--vermelho-escuro);
-    }
-
-    .card img {
-      max-width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
+    /* Título principal responsivo e branco */
     h2 {
-      color: var(--vermelho-escuro);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: clamp(20px, 3.2vw, 32px);
+      margin-top: .5rem;
+      margin-bottom: 1.5rem;
     }
+
+    /* Melhor espaçamento em telas pequenas */
+    @media (max-width: 767.98px) {
+      body { padding-top: 100px; } /* quando navbar colapsa, espaço extra */
+      .navbar-custom { padding: 10px; }
+      .navbar-custom .navbar-brand { font-size: 18px; }
+      .navbar-custom .navbar-nav { flex-direction: column; gap: .25rem; }
+      .navbar-custom .nav-item { width: 100%; }
+      .card { min-height: 280px; }
+      .container { padding-left: 1rem; padding-right: 1rem; }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199.98px) {
+      .card { min-height: 260px; }
+    }
+
+    /* melhora contraste do nav em telas muito largas */
+    @media (min-width: 1200px) {
+      .navbar-custom { padding: 10px 24px; }
+    }
+
+    /* Estilos existentes (caso precise manter) */
+    /* ...algumas regras movidas/ajustadas acima... */
   </style>
 </head>
 <body>
+
+  <!-- Navbar fixa no topo -->
+  <nav class="navbar navbar-expand-lg navbar-custom navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">AUTOFLEX</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <!-- links principais: cada item ocupa espaço igual e ficam centralizados -->
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalogo.html">Carros</a></li>
+          <li class="nav-item"><a class="nav-link" href="veiculos.html">Lista de veículos</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Sair</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <div class="container py-5">
     <h2 class="text-center mb-4">Contatos dos Vendedores</h2>
@@ -68,52 +203,100 @@
       <!-- Vendedor 1 -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto do Vendedor 1">
-          <div class="card-body">
-            <h5 class="card-title">Vendedor 1</h5>
-            <p class="card-text"><i class="bi bi-telephone"></i> (11) 99999-9999</p>
-            <a href="tel:+5511999999999" class="btn btn-primary">Ligar</a>
+          <div class="photo-wrapper">
+            <img id="vendor-img-1" src="https://via.placeholder.com/600x350?text=Foto" class="card-img-top" alt="Foto do Vendedor 1">
+            <input class="photo-input" id="vendor-file-1" type="file" accept="image/*" />
+            <button type="button" class="photo-upload-btn" data-target="1">Alterar foto</button>
           </div>
-        </div>
-      </div>
+           <div class="card-body">
+             <h5 class="card-title">Vendedor 1</h5>
+             <h5 class="card-title">Gabriel Lucas</h5>
+             <p class="card-text"><i class="bi bi-telephone"></i> (11) 99999-9999</p>
+             <a href="tel:+5511999999999" class="btn btn-primary">Ligar</a>
+           </div>
+         </div>
+       </div>
       <!-- Vendedor 2 -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto do Vendedor 2">
-          <div class="card-body">
-            <h5 class="card-title">Vendedor 2</h5>
-            <p class="card-text"><i class="bi bi-telephone"></i> (21) 98888-8888</p>
-            <a href="tel:+5521988888888" class="btn btn-primary">Ligar</a>
+          <div class="photo-wrapper">
+            <img id="vendor-img-2" src="https://via.placeholder.com/600x350?text=Foto" class="card-img-top" alt="Foto do Vendedor 2">
+            <input class="photo-input" id="vendor-file-2" type="file" accept="image/*" />
+            <button type="button" class="photo-upload-btn" data-target="2">Alterar foto</button>
           </div>
-        </div>
-      </div>
+           <div class="card-body">
+             <h5 class="card-title">Vendedor 2</h5>
+             <h5 class="card-title">Jhon Pablo</h5>
+             <p class="card-text"><i class="bi bi-telephone"></i> (21) 98888-8888</p>
+             <a href="tel:+5521988888888" class="btn btn-primary">Ligar</a>
+           </div>
+         </div>
+       </div>
       <!-- Vendedor 3 -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto do Vendedor 3">
-          <div class="card-body">
-            <h5 class="card-title">Vendedor 3</h5>
-            <p class="card-text"><i class="bi bi-telephone"></i> (31) 97777-7777</p>
-            <a href="tel:+5531977777777" class="btn btn-primary">Ligar</a>
+          <div class="photo-wrapper">
+            <img id="vendor-img-3" src="https://via.placeholder.com/600x350?text=Foto" class="card-img-top" alt="Foto do Vendedor 3">
+            <input class="photo-input" id="vendor-file-3" type="file" accept="image/*" />
+            <button type="button" class="photo-upload-btn" data-target="3">Alterar foto</button>
           </div>
-        </div>
-      </div>
+           <div class="card-body">
+             <h5 class="card-title">Vendedor 3</h5>
+             <h5 class="card-title">João Gabriel</h5>
+             <p class="card-text"><i class="bi bi-telephone"></i> (31) 97777-7777</p>
+             <a href="tel:+5531977777777" class="btn btn-primary">Ligar</a>
+           </div>
+         </div>
+       </div>
       <!-- Vendedor 4 -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/150" class="card-img-top" alt="Foto do Vendedor 4">
-          <div class="card-body">
-            <h5 class="card-title">Vendedor 4</h5>
-            <p class="card-text"><i class="bi bi-telephone"></i> (41) 96666-6666</p>
-            <a href="tel:+5541966666666" class="btn btn-primary">Ligar</a>
+          <div class="photo-wrapper">
+            <img id="vendor-img-4" src="https://via.placeholder.com/600x350?text=Foto" class="card-img-top" alt="Foto do Vendedor 4">
+            <input class="photo-input" id="vendor-file-4" type="file" accept="image/*" />
+            <button type="button" class="photo-upload-btn" data-target="4">Alterar foto</button>
           </div>
-        </div>
-      </div>
+           <div class="card-body">
+             <h5 class="card-title">Vendedor 4</h5>
+             <h5 class="card-title">Jadiel Almeida</h5>
+             <p class="card-text"><i class="bi bi-telephone"></i> (41) 96666-6666</p>
+             <a href="tel:+5541966666666" class="btn btn-primary">Ligar</a>
+           </div>
+         </div>
+       </div>
     </div>
   </div>
 
   <!-- Scripts do Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // preview de imagem e persistência local (localStorage)
+    document.querySelectorAll('.photo-upload-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=> {
+        const id = btn.getAttribute('data-target');
+        document.getElementById('vendor-file-'+id).click();
+      });
+    });
+
+    function handleFileInput(index, file){
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = ()=> {
+        const dataUrl = reader.result;
+        document.getElementById('vendor-img-'+index).src = dataUrl;
+        try { localStorage.setItem('vendor-img-'+index, dataUrl); } catch(e){}
+      };
+      reader.readAsDataURL(file);
+    }
+
+    [1,2,3,4].forEach(i=>{
+      const input = document.getElementById('vendor-file-'+i);
+      input.addEventListener('change', e => handleFileInput(i, e.target.files[0]));
+      // restaurar do localStorage se existir
+      const saved = localStorage.getItem('vendor-img-'+i);
+      if(saved) document.getElementById('vendor-img-'+i).src = saved;
+    });
+  </script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
