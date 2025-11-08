@@ -10,150 +10,206 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <style>
-    :root {
-      --vermelho-escuro: #8b0000;
-      --vermelho-claro: #e60000;
-      --preto: #000000;
-      --branco: #ffffff;
-    }
+  :root {
+    --vermelho-escuro: #8b0000;
+    --vermelho-claro: #e60000;
+    --preto: #000000;
+    --branco: #ffffff;
+  }
 
-    * { box-sizing: border-box; }
+  * { box-sizing: border-box; }
 
+  /* Container principal */
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #111;
+  }
+
+  /* Lados: ajustáveis e com tamanho mínimo */
+  .left-side {
+    flex: 1;
+    min-width: 320px;
+    min-height: 40vh;
+    background: url('img/novo foto carro.png') center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .right-side {
+    flex: 1.05;
+    min-width: 320px;
+    background: linear-gradient(to bottom right, var(--vermelho-escuro), var(--preto));
+    color: var(--branco);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(16px, 4vw, 70px);
+    overflow-y: auto;
+  }
+
+  /* Navbar */
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 8px;
+    padding: 10px 18px;
+    white-space: nowrap;
+  }
+
+  .navbar-brand, .nav-link {
+    color: var(--branco) !important;
+  }
+  .nav-link:hover { color: var(--vermelho-claro) !important; }
+
+  .navbar-nav {
+    gap: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-grow: 1;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    font-weight: 600;
+    padding: 8px 14px;
+    transition: transform 0.25s ease, color 0.2s ease;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: var(--vermelho-claro) !important;
+    transform: scale(1.04);
+  }
+
+  .hero-content {
+    flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+    padding: 8px;
+  }
+
+  .hero-content h1 {
+    margin: 0;
+    font-size: clamp(1.4rem, 3.6vw, 2.4rem);
+    line-height: 1.05;
+  }
+
+  .hero-content h1 span {
+    color: var(--vermelho-claro);
+  }
+
+  .hero-content p {
+    font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+    margin: 0;
+  }
+
+  .form-card {
+    background: rgba(255, 255, 255, 0.98);
+    color: var(--preto);
+    border-radius: 12px;
+    padding: clamp(12px, 3.5vw, 28px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .btn-reservar {
+    background-color: var(--vermelho-claro);
+    color: var(--branco);
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.12s ease;
+  }
+  .btn-reservar:hover { background-color: var(--vermelho-escuro); transform: translateY(-1px); }
+
+  footer {
+    text-align: center;
+    color: var(--branco);
+    font-size: 0.9rem;
+    padding: 10px;
+    opacity: 0.85;
+  }
+
+  /* Quebras responsivas por largura */
+  @media (max-width: 1200px) {
+    .left-side { min-height: 35vh; }
+    .form-card { max-width: 440px; }
+  }
+
+  @media (max-width: 992px) {
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      overflow-x: hidden;
-      overflow-y: auto;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: auto;
     }
 
     .left-side {
-      flex: 0.9;
-      background: url('img/novo foto carro.png') center/cover no-repeat;
+      height: 36vh;
+      width: 100%;
+      order: 0;
     }
 
     .right-side {
-      flex: 1.1;
-      background: linear-gradient(to bottom right, var(--vermelho-escuro), var(--preto));
-
-      color: var(--branco);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 40px 70px;
-      overflow-y: auto;
+      padding: clamp(12px, 6vw, 28px);
+      order: 1;
     }
 
-    .navbar {
-      background-color: rgba(0, 0, 0, 0.9);
-      border-radius: 8px;
-      padding: 10px 28px;
-      white-space: nowrap;
-    }
-   
-    .navbar-brand, .nav-link {
-      color: var(--branco) !important;
-    }
+    .navbar { padding: 8px 12px; }
+    .form-card { max-width: 100%; margin-top: 16px; }
+  }
 
-    .nav-link:hover {
-      color: var(--vermelho-claro) !important;
-    }
+  @media (max-width: 768px) {
+    .hero-content h1 { font-size: clamp(1.2rem, 5.2vw, 1.8rem); }
+    .navbar-nav { gap: 8px; }
+  }
 
-    .navbar-nav {
-      gap: 18px; /* 🔹 espaçamento entre links */
-    }
-    .hero-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      gap: 20px;
-    }
+  @media (max-width: 576px) {
+    .hero-content h1 { font-size: 1.3rem; }
+    .hero-content p { font-size: 0.9rem; }
+    .right-side { padding: 12px; }
+    .form-card { padding: 12px; }
+    .navbar-brand { font-size: 0.98rem; }
+    .left-side { height: 28vh; background-position: center 35%; }
+  }
 
-    .hero-content h1 span {
-      color: var(--vermelho-claro);
-    }
-
-    .form-card {
-      background: rgba(255, 255, 255, 0.95);
-      color: var(--preto);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      width: 100%;
-      max-width: 420px;
-    }
-
-    .btn-reservar {
-      background-color: var(--vermelho-claro);
-      color: var(--branco);
-      border: none;
-      font-weight: bold;
-      transition: background-color 0.2s ease;
-    }
-
-    .btn-reservar:hover {
-      background-color: var(--vermelho-escuro);
-    }
-
-    footer {
-      text-align: center;
-      color: var(--branco);
-      font-size: 0.9rem;
-      padding: 10px;
-      opacity: 0.8;
-    }
-    
-    @media (max-width: 992px) {
-      body {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        height: auto;
-      }
-
-      .left-side {
-        height: 40vh;
-        width: 100%;
-      }
-
-      .right-side {
-        padding: 20px;
-      }
-
-      .form-card {
-        max-width: 100%;
-        margin-top: 20px;
-      }
-
-      .navbar {
-        padding: 8px 12px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-content h1 {
-        font-size: 1.5rem;
-      }
-      .hero-content p {
-        font-size: 0.9rem;
-      }
-      .right-side {
-        padding: 15px;
-      }
-      .form-card {
-        padding: 15px;
-      }
-      .navbar-brand {
-        font-size: 1rem;
-      }
-    }
-   
+  /* Pequenos ajustes para navegadores antigos (IE11) */
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .navbar-nav { flex-wrap: wrap; }
+    .hero-content { padding: 6px; }
+  }
   </style>
 </head>
 <body>
@@ -176,7 +232,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="clientes.html">Clientes</a></li>
-            <li class="nav-item"><a class="nav-link" href="dashboard.html">Carros</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalogo.html">Carros</a></li>
             <li class="nav-item"><a class="nav-link" href="veiculos.html">Lista de veículos</a></li>
             <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
           </ul>

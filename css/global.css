@@ -1,10 +1,19 @@
-/* Global styles applied across all pages */
 :root{
-  --primary: #000000; /* cor da navbar / footer */
+  --vermelho-escuro: #8b0000;
+  --vermelho-claro: #e60000;
+  --preto: #000000;
+
+  --primary: var(--preto); /* cor da navbar / footer */
   --text-on-primary: #ffffff;
-  --hover-red: #e60000; /* nova cor para hover */
+  --hover-red: var(--vermelho-claro);
 }
-html, body { height: 100%; }
+
+/* garante fundo escuro com leve gradiente no body (áreas externas à tabela) */
+html, body {
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(18,18,18,1) 100%);
+  color: #fff;
+}
 
 /* Navbar padrão */
 .navbar {
@@ -47,3 +56,50 @@ html, body { height: 100%; }
 
 /* Pequenas utilidades para manter consistência */
 .text-primary { color: #0d6efd !important; }
+
+/* ------------------------------------------------------------------
+   Aplicação da paleta nas áreas brancas fora da tabela:
+   - .card.card-body (área ao redor da tabela)
+   - .page-header (título + botão)
+   - area lateral (body já tratada acima)
+   ------------------------------------------------------------------*/
+
+/* card que envolve a tabela: aplica gradiente vermelho-escuro -> preto */
+.card.card-body {
+  background: linear-gradient(90deg, rgba(139,0,0,0.95) 0%, rgba(139, 0, 0, 0.95) 100%);
+  color: #fff;
+  border: none; /* remove borda branca padrão */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+/* mantém a tabela com aparência Bootstrap (linhas brancas e legíveis) */
+.table {
+  background: transparent; /* tabela fica sobre o card com linhas brancas/striped */
+}
+
+/* cabeçalho da página: centralizado e com fundo sutil derivado da paleta */
+.page-header {
+  background: linear-gradient(90deg, rgba(139,0,0,0.06), rgba(0,0,0,0.06));
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+/* botão "Novo Modelo" permanece branco, com sombra sutil para destaque */
+.novoModeloBtn {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* offcanvas: mantém conteúdo claro (formulário) para legibilidade */
+.offcanvas {
+  background: linear-gradient(180deg, #fff 0%, #fff 100%);
+  color: #000;
+}
+
+/* ajustes responsivos: garante contraste em telas pequenas */
+@media (max-width: 768px) {
+  .card.card-body { padding: .5rem; }
+  .page-header { padding: .6rem; }
+}
