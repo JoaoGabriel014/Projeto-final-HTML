@@ -9,12 +9,71 @@
   <link rel="stylesheet" href="../css/custom.css">
   <link rel="stylesheet" href="../css/pag1.css">
   <script src="https://unpkg.com/feather-icons"></script>
+
+  <style>
+    /* Deixa a tabela arredondada e elegante */
+    .car-details {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      background: #fff;
+    }
+    .car-details th {
+      width: 40%;
+      background-color: #f8f9fa;
+      font-weight: 600;
+    }
+    .car-details td {
+      background-color: #ffffff;
+    }
+    .car-details i {
+      color: #8b0000;
+      margin-right: 6px;
+    }
+
+    /* Espaçamento e estilo para os itens */
+    .car-items {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 25px;
+      box-shadow: 0 4px 15px rgb(240, 240, 240);
+    }
+    .car-items li {
+      margin-bottom: 8px;
+    }
+    .car-items i {
+      color: #8b0000;
+      margin-right: 6px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #000000 !important;
+      padding-top: 18px !important;
+      padding-bottom: 18px !important;
+    }
+    .navbar img {
+      max-height: 22px !important;
+      object-fit: contain;
+    }
+
+    .site-footer {
+      text-align: center;
+      color: #fff;
+      background-color:#8b0000;
+      padding: 15px;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+  </style>
 </head>
+
 <body class="bg-light">
   
-<nav class="navbar navbar-expand-lg px-4" style="background-color: #002b64; padding-top: 12px; padding-bottom: 12px; border-bottom: none; box-shadow: none;">
+<nav class="navbar navbar-expand-lg px-4">
   <a href="../dashboard.html" class="d-flex align-items-center">
-    <img src="../img/AutoLogo.png" alt="Autoflex" style="max-height: 20px; object-fit: contain;">
+    <img src="../img/AutoLogo.png" alt="Autoflex">
   </a>
   <div class="ms-auto d-flex align-items-center gap-4">
     <a href="../clientes.html" class="text-white fw-bold">Clientes</a>
@@ -25,6 +84,7 @@
 
 <div class="container my-5">
   <div class="row g-4">
+    <!-- Carrossel -->
     <div class="col-md-6">
       <div id="carouselCarro" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner rounded shadow">
@@ -51,51 +111,55 @@
           <span class="carousel-control-next-icon"></span>
         </button>
       </div>
+
+      <!-- Principais Itens abaixo do carrossel -->
+      <div class="car-items mt-4">
+        <h5 class="fw-bold mb-3">Principais Itens</h5>
+        <ul class="list-unstyled mb-0">
+          <li><i data-feather="wind"></i> Ar-condicionado digital</li>
+          <li><i data-feather="sliders"></i> Controle de estabilidade</li>
+          <li><i data-feather="camera"></i> Retrovisores elétricos</li>
+          <li><i data-feather="disc"></i> Rodas 21"</li>
+          <li><i data-feather="shield"></i> Airbag motorista e passageiro</li>
+        </ul>
+      </div>
     </div>
 
+    <!-- Detalhes do carro -->
     <div class="col-md-6">
       <h2 class="fw-bold">Porsche Macan T</h2>
-      <p class="text-primary fs-4 fw-semibold">R$ 2.500/dia</p>
+      <p class="text-danger fs-4 fw-semibold">R$ 2.500/dia</p>
 
-      <table class="table table-striped align-middle">
+      <table class="table table-striped align-middle car-details">
         <tbody>
           <tr>
-            <th scope="row"><i data-feather="calendar" class="text-primary"></i> Ano/Modelo</th>
+            <th scope="row"><i data-feather="calendar"></i> Ano/Modelo</th>
             <td>2022 / 2022</td>
           </tr>
           <tr>
-            <th scope="row"><i data-feather="activity" class="text-primary"></i> KM</th>
-            <td>15.000 km</td>
+            <th scope="row"><i data-feather="users"></i> Nº de lugares</th>
+            <td>5</td>
           </tr>
           <tr>
-            <th scope="row"><i data-feather="settings" class="text-primary"></i> Transmissão</th>
+            <th scope="row"><i data-feather="settings"></i> Transmissão</th>
             <td>Automática (7 marchas)</td>
           </tr>
           <tr>
-            <th scope="row"><i data-feather="zap" class="text-primary"></i> Potência</th>
+            <th scope="row"><i data-feather="zap"></i> Potência</th>
             <td>265 cv</td>
           </tr>
           <tr>
-            <th scope="row"><i data-feather="cpu" class="text-primary"></i> Cilindros</th>
+            <th scope="row"><i data-feather="cpu"></i> Cilindros</th>
             <td>4 (turbo)</td>
           </tr>
           <tr>
-            <th scope="row"><i data-feather="droplet" class="text-primary"></i> Combustível</th>
+            <th scope="row"><i data-feather="droplet"></i> Combustível</th>
             <td>Gasolina</td>
           </tr>
         </tbody>
       </table>
 
-      <h5 class="mt-4">Principais Itens</h5>
-      <ul class="list-unstyled">
-        <li><i data-feather="wind" class="text-primary"></i> Ar-condicionado digital</li>
-        <li><i data-feather="sliders" class="text-primary"></i> Controle de estabilidade</li>
-        <li><i data-feather="camera" class="text-primary"></i> Retrovisores elétricos</li>
-        <li><i data-feather="disc" class="text-primary"></i> Rodas 21"</li>
-        <li><i data-feather="shield" class="text-primary"></i> Airbag motorista e passageiro</li>
-      </ul>
-
-      <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-success btn-lg mt-3">
+      <a href="../contato.html" target="_blank" class="btn btn-success btn-lg mt-3">
         Falar com um consultor
       </a>
     </div>
