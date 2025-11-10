@@ -29,10 +29,10 @@
 </div>
 
 <style>
-/* posiciona o título centralizado e o botão branco mais próximo dele */
+
 .page-header h1{ margin: 0; text-align: center; font-weight: 650; }
 
-/* botão branco, um pouco deslocado para ficar próximo do título (à direita) */
+
 
 .novoModeloBtn{
   position: relative;
@@ -45,10 +45,10 @@
   padding: 0.45rem 0.75rem;
 }
 
-/* hover suave */
+
 .novoModeloBtn:hover{ background: #f8f9fa; color:#f85b00; }
 
-/* responsivo: em telas pequenas o botão fica abaixo do título e centralizado */
+
 @media (max-width: 768px){
   .page-header{ padding: 0 12px; }
   .novoModeloBtn{ position: static; display: block; margin: 0.6rem auto 0; }
@@ -418,165 +418,197 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script>
-// Função para editar veículo
-function editarCliente(button) {
+
+let ultimoNumero = (function() {
+    const rows = document.querySelectorAll('table tbody tr');
+    let max = 0;
+    rows.forEach(r => {
+        const n = parseInt(r.cells[0].textContent, 10);
+        if (!isNaN(n) && n > max) max = n;
+    });
+    return max || 0;
+})();
+
+function abrirOffcanvas() {
+    const offEl = document.getElementById('add-cliente');
+    return new bootstrap.Offcanvas(offEl);
+}
+
+
+function editarVeiculo(button) {
     const row = button.closest('tr');
     const cells = row.cells;
 
-    // Preenche o formulário com os dados da linha
-    document.getElementById('Modelo').value = cells[3].textContent; // Modelo
-    document.getElementById('ano').value = cells[4].textContent; // Ano
-    document.getElementById('valor').value = cells[5].textContent; // Preço
-    document.getElementById('endereco').value = cells[6].textContent; // Categoria
-    document.getElementById('cpf').value = cells[7].textContent; // Lugares
+   
+    const modelosInputs = document.querySelectorAll('#clienteForm input[id="Modelo"]');
+    if (modelosInputs.length >= 1) modelosInputs[0].value = cells[2].textContent.trim(); 
+    if (modelosInputs.length >= 2) modelosInputs[1].value = cells[3].textContent.trim(); 
 
-    // Atualiza o título do formulário
+
+    const anoEl = document.getElementById('ano');
+    const valorEl = document.getElementById('valor');
+    const enderecoEl = document.getElementById('endereco');
+    const cpfEl = document.getElementById('cpf');
+
+    if (anoEl) anoEl.value = cells[4].textContent.trim();
+    if (valorEl) valorEl.value = cells[5].textContent.trim();
+    if (enderecoEl) enderecoEl.value = cells[6].textContent.trim();
+    if (cpfEl) cpfEl.value = cells[7].textContent.trim();
+
+    
+    const img = cells[1].querySelector('img');
+    if (img) window.previewImageUrl = img.src;
+
+    
+    const form = document.getElementById('clienteForm');
+    form.setAttribute('data-editing-row', row.rowIndex);
+
+   
     document.getElementById('tituloForm').textContent = 'Editar Veículo';
-
-    // Abre o offcanvas
-    const offcanvas = new bootstrap.Offcanvas(document.getElementById('add-cliente'));
-    offcanvas.show();
-
-    // Armazena a referência da linha sendo editada
-    document.querySelector('#clienteForm').setAttribute('data-editing-row', row.rowIndex);
+    abrirOffcanvas().show();
 }
 
-// Função para excluir veículo
-function excluirCliente(button) {
-    if (confirm('Tem certeza que deseja excluir este veículo?')) {
-        const row = button.closest('tr');
-        row.remove();
-        
-        // Feedback visual
-        const toast = document.createElement('div');
-        toast.className = 'alert alert-success position-fixed top-0 end-0 m-3';
-        toast.textContent = 'Veículo excluído com sucesso!';
-        document.body.appendChild(toast);
-        
-        // Remove o alerta após 3 segundos
-        setTimeout(() => toast.remove(), 3000);
-    }
+function excluirVeiculo(button) {
+    if (!confirm('Tem certeza que deseja excluir este veículo?')) return;
+    const row = button.closest('tr');
+    if (!row) return;
+    row.remove();
+
+    
+    const toast = document.createElement('div');
+    toast.className = 'alert alert-success position-fixed top-0 end-0 m-3';
+    toast.style.zIndex = 9999;
+    toast.textContent = 'Veículo excluído com sucesso!';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
 }
 
-// Função para gerar número único para cada novo veículo
-let ultimoNumero = 1;
-function gerarNovoNumero() {
-    return ++ultimoNumero;
-}
-
-// Função para preview da imagem selecionada
-document.getElementById('foto').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            window.previewImageUrl = e.target.result;
+const fotoInput = document.getElementById('foto');
+if (fotoInput) {
+    fotoInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                window.previewImageUrl = ev.target.result;
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);
-    }
-});
+    });
+}
 
-// Listener para adicionar novo veículo
-document.getElementById('clienteForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const editingRowIndex = this.getAttribute('data-editing-row');
-    const formData = {
-        numero: gerarNovoNumero(),
-        marca: document.getElementById('Modelo').value, // Corrigir ID para 'marca' depois
-        modelo: document.getElementById('Modelo').value,
-        ano: document.getElementById('ano').value,
-        preco: document.getElementById('valor').value,
-        categoria: document.getElementById('endereco').value,
-        lugares: document.getElementById('cpf').value
-    };
-    
-    if (editingRowIndex) {
-        // Modo edição (código existente)
-        const row = document.querySelector('table').rows[editingRowIndex];
-        row.cells[3].textContent = formData.modelo;
-        row.cells[4].textContent = formData.ano;
-        row.cells[5].textContent = formData.preco;
-        row.cells[6].textContent = formData.categoria;
-        row.cells[7].textContent = formData.lugares;
+
+const clienteForm = document.getElementById('clienteForm');
+if (clienteForm) {
+    clienteForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
         
-        alert('Veículo atualizado com sucesso!');
-    } else {
-        // Modo adição
-        const tbody = document.querySelector('table tbody');
-        const newRow = tbody.insertRow();
+        const modelosInputs = document.querySelectorAll('#clienteForm input[id="Modelo"]');
+        const marcaVal = modelosInputs[0] ? modelosInputs[0].value.trim() : '';
+        const modeloVal = modelosInputs[1] ? modelosInputs[1].value.trim() : '';
+
+        const formData = {
+            marca: marcaVal,
+            modelo: modeloVal,
+            ano: document.getElementById('ano') ? document.getElementById('ano').value.trim() : '',
+            preco: document.getElementById('valor') ? document.getElementById('valor').value.trim() : '',
+            categoria: document.getElementById('endereco') ? document.getElementById('endereco').value.trim() : '',
+            lugares: document.getElementById('cpf') ? document.getElementById('cpf').value.trim() : ''
+        };
+
+        const editingRowIndex = this.getAttribute('data-editing-row');
+
+        if (editingRowIndex) {
+            
+            const table = document.querySelector('table');
+            const row = table.rows[editingRowIndex];
+            if (row) {
+                row.cells[2].textContent = formData.marca;
+                row.cells[3].textContent = formData.modelo;
+                row.cells[4].textContent = formData.ano;
+                row.cells[5].textContent = formData.preco;
+                row.cells[6].textContent = formData.categoria;
+                row.cells[7].textContent = formData.lugares;
+
+                
+                if (window.previewImageUrl) {
+                    const imgEl = row.cells[1].querySelector('img');
+                    if (imgEl) imgEl.src = window.previewImageUrl;
+                }
+
+                
+                const s = document.createElement('div');
+                s.className = 'alert alert-success position-fixed top-0 end-0 m-3';
+                s.style.zIndex = 9999;
+                s.textContent = 'Veículo atualizado com sucesso!';
+                document.body.appendChild(s);
+                setTimeout(() => s.remove(), 3000);
+            }
+        } else {
+            
+            const tbody = document.querySelector('table tbody');
+            const newRow = tbody.insertRow();
+
+          
+            ultimoNumero = (ultimoNumero || 0) + 1;
+
+           
+            const imgSrc = window.previewImageUrl || 'img/car-placeholder.png';
+
+            newRow.innerHTML = `
+                <td>${ultimoNumero}</td>
+                <td><img class="car-img" src="${imgSrc}" alt="Foto do carro"></td>
+                <td>${escapeHtml(formData.marca)}</td>
+                <td>${escapeHtml(formData.modelo)}</td>
+                <td>${escapeHtml(formData.ano)}</td>
+                <td>${escapeHtml(formData.preco)}</td>
+                <td>${escapeHtml(formData.categoria)}</td>
+                <td>${escapeHtml(formData.lugares)}</td>
+                <td></td>
+                <td>
+                    <button class="btn btn-sm btn-primary" onclick="editarVeiculo(this)">Editar</button>
+                    <button class="btn btn-sm btn-danger" onclick="excluirVeiculo(this)">Excluir</button>
+                </td>
+            `;
+
+            const s = document.createElement('div');
+            s.className = 'alert alert-success position-fixed top-0 end-0 m-3';
+            s.style.zIndex = 9999;
+            s.textContent = 'Veículo adicionado com sucesso!';
+            document.body.appendChild(s);
+            setTimeout(() => s.remove(), 3000);
+        }
+
         
-        // Inserir células com os dados
-        newRow.innerHTML = `
-            <td>${formData.numero}</td>
-            <td><img class="car-img" src="${window.previewImageUrl || 'img/car-placeholder.png'}" alt="Foto do carro"></td>
-            <td>${formData.marca}</td>
-            <td>${formData.modelo}</td>
-            <td>${formData.ano}</td>
-            <td>${formData.preco}</td>
-            <td>${formData.categoria}</td>
-            <td>${formData.lugares}</td>
-            <td>
-                <button class="btn btn-sm btn-primary" onclick="editarCliente(this)">Editar</button>
-                <button class="btn btn-sm btn-danger" onclick="excluirCliente(this)">Excluir</button>
-            </td>
-        `;
+        const offInst = bootstrap.Offcanvas.getInstance(document.getElementById('add-cliente'));
+        if (offInst) offInst.hide();
+        this.reset();
+        this.removeAttribute('data-editing-row');
+        window.previewImageUrl = null;
+    });
+}
 
-        // Feedback visual
-        const toast = document.createElement('div');
-        toast.className = 'alert alert-success position-fixed top-0 end-0 m-3';
-        toast.textContent = 'Veículo adicionado com sucesso!';
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
-    }
 
-    // Fecha o offcanvas e limpa o formulário
-    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('add-cliente'));
-    offcanvas.hide();
-    this.reset();
-    this.removeAttribute('data-editing-row');
-    window.previewImageUrl = null; // Limpa preview da imagem
-});
 
-// Listener para o formulário
-document.getElementById('clienteForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const editingRowIndex = this.getAttribute('data-editing-row');
-    const formData = {
-        modelo: document.getElementById('Modelo').value,
-        ano: document.getElementById('ano').value,
-        preco: document.getElementById('valor').value,
-        categoria: document.getElementById('endereco').value,
-        lugares: document.getElementById('cpf').value
-    };
-    
-    if (editingRowIndex) {
-        // Modo edição
-        const row = document.querySelector('table').rows[editingRowIndex];
-        row.cells[3].textContent = formData.modelo;
-        row.cells[4].textContent = formData.ano;
-        row.cells[5].textContent = formData.preco;
-        row.cells[6].textContent = formData.categoria;
-        row.cells[7].textContent = formData.lugares;
-        
-        // Feedback
-        alert('Veículo atualizado com sucesso!');
-    }
 
-    // Fecha o offcanvas e limpa o formulário
-    const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('add-cliente'));
-    offcanvas.hide();
-    this.reset();
-    this.removeAttribute('data-editing-row');
-});
 
-// Reset do formulário quando o offcanvas for fechado
+
 document.getElementById('add-cliente').addEventListener('hidden.bs.offcanvas', function () {
     document.getElementById('clienteForm').reset();
     document.getElementById('tituloForm').textContent = 'Novo Modelo';
     document.getElementById('clienteForm').removeAttribute('data-editing-row');
+    window.previewImageUrl = null;
 });
+
+function escapeHtml(text) {
+    if (!text) return '';
+    return text.replace(/&/g, "&amp;")
+               .replace(/</g, "&lt;")
+               .replace(/>/g, "&gt;")
+               .replace(/"/g, "&quot;")
+               .replace(/'/g, "&#039;");
+}
 </script>
 </body>
 </html>
