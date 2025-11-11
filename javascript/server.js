@@ -6,10 +6,10 @@ const app = express();
 const port = 3000;
 
 const client = new Client({
-  user: 'seu_usuario',   // Substitua pelo seu usuário do PostgreSQL
+  user: 'postgres',   // Substitua pelo seu usuário do PostgreSQL
   host: 'localhost',
-  database: 'locadora',  // Substitua pelo nome do seu banco de dados
-  password: 'sua_senha', // Substitua pela sua senha do PostgreSQL
+  database: 'autoflex',  // Substitua pelo nome do seu banco de dados
+  password: 'Estacio@123', // Substitua pela sua senha do PostgreSQL
   port: 5432,
 });
 
