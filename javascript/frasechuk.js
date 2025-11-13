@@ -1,9 +1,5 @@
 const frases = [
-      "As lágrimas do Chuck Norris curam o câncer.",
-"Chuck Norris contou até o infinito. Duas vezes.",
-"Chuck Norris é o único homem que conseguiu vencer a parede e quebrar o próprio recorde.",
-"Chuck Norris não dorme, ele espera.",
-"A Grande Muralha da China foi originalmente construída para impedir que os Chuck Norris ficassem bravos."
+    {"categories":[],"created_at":"2020-01-05 13:42:23.484083","icon_url":"https://api.chucknorris.io/img/avatar/chuck-norris.png","id":"VzP64l7zQyWNwvdb_tisbg","updated_at":"2020-01-05 13:42:23.484083","url":"https://api.chucknorris.io/jokes/VzP64l7zQyWNwvdb_tisbg","value":"acid rain happens when CHUCK NORRIS piss"}
 ];
 
 
